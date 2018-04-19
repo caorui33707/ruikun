@@ -1,6 +1,7 @@
 <?php
 namespace app\home\controller;
 use think\Controller;
+use think\Request;
 
 class Register extends Controller{
 
@@ -11,8 +12,16 @@ class Register extends Controller{
     }
 
     public function add(){
+        $request = Request::instance();
+        $ip = $request->ip();
+        $ip = str_replace('.','-',$ip);
+        $file = './fonts/authcode_set_'.$ip;
 
-        $returnCode  = '8888';
+        //$returnCode  = cookie('authcode_'.$ip);
+
+        //file_put_contents('D:/authcode_get_'.$ip,$returnCode);
+        $returnCode = file_get_contents($file);
+
 
         $mobile =  input('post.mobile','');
         $passwd =  input('post.passwd');
@@ -66,6 +75,8 @@ class Register extends Controller{
                     )
                 );
             }else if( $this->registerDb->add($data)) {
+                unlink($file);  //删除文件
+
                return json(
                    array(
                        'status' => 0

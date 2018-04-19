@@ -22,7 +22,7 @@ class Index extends Controller{
     public function  verifyCode(){
         $this->image = new \app\home\model\Image();
 
-        return $this->image->img();
+        return $this->image->img2();
     }
 
 

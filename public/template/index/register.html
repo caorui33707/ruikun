@@ -98,5 +98,15 @@
 </div>
 <!--主题-->
 </body>
+<script type="text/javascript">
+
+    window.onload=function(){
+        document.getElementById('click_refush').onclick=fn1
+        function fn1(){
+            document.getElementById('click_refush').setAttribute('src','/verify_code?t= ' + Math.random());
+        };
+    };
+
+</script>
 
 </html>
