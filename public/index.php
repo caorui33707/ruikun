@@ -1,4 +1,16 @@
 <?php
+header('Access-Control-Allow-Origin:*');
+//$origin = isset($_SERVER['HTTP_ORIGIN'])? $_SERVER['HTTP_ORIGIN'] : '';
+//
+//$allow_origin = array(
+//    'http://192.168.1.106'
+//);
+//
+
+//
+//if(in_array($origin, $allow_origin)){
+//    header('Access-Control-Allow-Origin:'.$origin);
+//}
 // +----------------------------------------------------------------------
 // | ThinkPHP [ WE CAN DO IT JUST THINK ]
 // +----------------------------------------------------------------------
