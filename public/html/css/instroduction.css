@@ -1,0 +1,237 @@
+.jt_xz {
+    background: url("../img/front-end-picture/jt_icon_bg.jpg") no-repeat center center;
+    width: 100%;
+    height: 304px;
+    background-size: cover;
+}
+
+.jt_xz .jt_xz_box {
+    max-width: 1250px;
+    margin: 0 auto;
+    padding-top: 80px;
+}
+
+.jt_xz .jt_xz_box ul li {
+    float: left;
+    width: 33.3%;
+    color: #fff;
+    text-align: center;
+}
+
+.jt_xz .jt_xz_box ul li .jt_xz_a img {
+    height: 65px;
+}
+
+.jt_xz .jt_xz_box ul li .jt_xz_b {
+    font-size: 48px;
+    padding: 10px 0;
+}
+
+.jt_xz .jt_xz_box ul li .jt_xz_c {
+    font-size: 16px;
+}
+
+.run_main {
+    width: 100%;
+    margin: 0 auto;
+    background: #fff;
+}
+
+.run_main .run_profile {
+    background: #f6f6f6;
+    height: 448px;
+    padding-left: 9.7%;
+    overflow: hidden;
+}
+
+.run_main .run_profile_main {
+    overflow: hidden;
+}
+
+.run_main .run_profile {
+    background: #f6f6f6;
+    height: 448px;
+    padding-left: 9.7%;
+    overflow: hidden;
+}
+
+.run_main .run_profile .run_profile_a {
+    color: #333;
+    font-size: 36px;
+    letter-spacing: 2px;
+    margin-top: 9%;
+    margin-bottom: 7.5%;
+}
+
+.run_main .run_profile .run_profile_b {
+    font-size: 18px;
+    line-height: 42px;
+    color: #666;
+    width: 70%;
+    margin-bottom: 13%;
+}
+
+.run_main .run_profile .run_profile_c {
+    display: inline-block;
+    width: 170px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    border: 1px solid #b8b8b8;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.run_main .run_profile .run_profile_c:hover {
+    border: 1px solid #003677;
+    background: #003677;
+}
+
+.run_main .run_profile .run_profile_c:hover a {
+    color: #fff;
+}
+
+.run_main .run_profile .run_profile_c a {
+    font-size: 24px;
+    color: #666;
+    display: block;
+}
+
+.run_main .run_profile_bg {
+    background: url("../img/front-end-picture/run_profile_bg.png") no-repeat center center;
+    background-size: cover;
+    height: 448px;
+    position: relative;
+}
+
+.run_main .run_profile_bg .video_img1 {
+    position: absolute;
+    left: -130px;
+    top: 11%;
+    z-index: 111111;
+}
+
+.run_main .run_concept {
+    max-width: 1250px;
+    margin: 0 auto;
+    margin-top: 6%;
+}
+
+.run_main .run_concept .run_concept_title {
+    width: 100%;
+}
+
+.run_main .run_concept .run_concept_title .run_concept_title_lt {
+    font-size: 36px;
+    color: #003677;
+    letter-spacing: 2px;
+}
+
+.run_main .run_concept .run_concept_main {
+    margin-top: 5%;
+    position: relative;
+}
+
+.run_main .run_concept .run_concept_main .firm_a {
+    font-size: 24px;
+    color: #333;
+    width: 100%;
+    letter-spacing: 2px;
+    padding-left: 11%;
+}
+
+.run_main .run_concept .run_concept_main .firm_b {
+    margin: 4% 0 5% 0;
+    padding-left: 11%;
+}
+
+.run_main .run_concept .run_concept_main .firm_b span {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 8px;
+    background: #808080;
+}
+
+.run_main .run_concept .run_concept_main .firm_b i {
+    display: inline-block;
+    width: 80px;
+    height: 1px;
+    background: #808080;
+    vertical-align: 3px;
+}
+
+.run_main .run_concept .run_concept_main .firm_c {
+    font-size: 18px;
+    color: #333;
+    letter-spacing: 2px;
+    line-height: 36px;
+    padding: 0 11%;
+}
+
+.run_main .run_concept .run_concept_main .pp_swiper {
+    width: 100%;
+    margin-top: 4%;
+    height: 450px;
+}
+
+.run_main .run_concept .run_concept_main .swiper-container {
+    position: relative;
+    height: 220px;
+    overflow: hidden;
+}
+
+.run_main .run_concept .run_concept_main .swiper-container .swiper-wrapper {
+    width: 10000px;
+    height: 220px;
+    transform: translate3d(0px, 0px, 0px);
+    transition-duration: 0s;
+}
+
+.run_main .run_concept .run_concept_main .swiper-container .swiper-wrapper .swiper-slide {
+    width: 1250px;
+    height: 220px;
+}
+
+.run_main .run_concept .run_concept_main .swiper-container .swiper-wrapper .swiper-slide>ul {
+    overflow: hidden;
+    display: flex;
+}
+
+.run_main .run_concept .run_concept_main .swiper-container .swiper-wrapper .swiper-slide>ul>li {
+    flex: 1;
+}
+
+.run_main .run_concept .run_concept_main .swiper-pagination-switch {
+    display: inline-block;
+    width: 25px;
+    height: 9px;
+    background: #c7c7c7;
+    margin: 0 5px;
+    opacity: 1;
+    border: 1px solid #fff;
+    cursor: pointer;
+}
+
+.run_main .run_concept .run_concept_main .swiper-active-switch {
+    width: 70px;
+    background: #003677;
+}
+
+.run_main .run_concept .run_concept_main .pagination {
+    position: absolute;
+    z-index: 20;
+    bottom: -35px;
+    width: 100%;
+    text-align: center;
+}
+
+.pagination {
+    display: inline-block;
+    padding-left: 0;
+    margin: 20px 0;
+    border-radius: 4px;
+}

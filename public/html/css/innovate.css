@@ -1,0 +1,363 @@
+.innovate {
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 3%;
+    background: #fff;
+}
+
+.innovate .innovate_box {
+    max-width: 1250px;
+    margin: 0 auto;
+}
+
+.innovate .innovate_box .innovate_a {
+    width: 100%;
+}
+
+.innovate .innovate_box .innovate_a .innovate_a_title {
+    font-size: 36px;
+    text-align: center;
+    margin-bottom: 3%;
+    color: #003677;
+}
+
+.innovate .innovate_box .innovate_a .innovate_a_one {
+    font-size: 18px;
+    letter-spacing: 3px;
+    text-indent: 2em;
+    line-height: 30px;
+    margin-bottom: 3%;
+}
+
+.innovate .innovate_box .innovate_a .innovate_a_two {
+    width: 100%;
+}
+
+.swiper-container {
+    height: 611.996px;
+}
+
+.swiper-wrapper {
+    width: 5000px;
+    overflow: hidden;
+    transform: translate3d(0px, 0px, 0px);
+    transition-duration: 0.3s;
+}
+
+.innovate .innovate_box .innovate_a .innovate_a_two .swiper-slide {
+    overflow: hidden;
+}
+
+.innovate .innovate_box .innovate_a .innovate_a_two .swiper-slide img {
+    width: 100%;
+}
+
+.innovate .innovate_box .innovate_a .innovate_a_three {
+    width: 100%;
+    overflow: hidden;
+}
+
+.innovate .innovate_box .innovate_a .innovate_a_three .innovate_a_three_lt {
+    width: 50%;
+}
+
+.innovate .innovate_box .innovate_a .innovate_a_three .innovate_a_three_lt .in_lt_a {
+    background: url("../../../backend-picture/ys_bg1.jpg") no-repeat center center;
+    height: 260px;
+    width: 100%;
+    background-size: cover;
+}
+
+.innovate .innovate_box .innovate_a .innovate_a_three .innovate_a_three_lt .in_lt_a .in_lt_a1 {
+    margin-top: 10%;
+    width: 50%;
+    text-align: center;
+    border-right: 1px solid #fff;
+}
+
+.innovate .innovate_box .innovate_a .innovate_a_three .innovate_a_three_lt .in_lt_a .in_lt_a1 .in_a11 {
+    text-align: center;
+}
+
+.innovate .innovate_box .innovate_a .innovate_a_three .innovate_a_three_lt .in_lt_a .in_lt_a1 .in_a22 {
+    font-size: 21px;
+    color: #fff;
+    margin-top: 8%;
+    letter-spacing: 2px;
+}
+
+.innovate .innovate_box .innovate_a .innovate_a_three .innovate_a_three_lt .in_lt_a .in_lt_a1 .in_a22 {
+    font-size: 21px;
+    color: #fff;
+    margin-top: 8%;
+    letter-spacing: 2px;
+}
+
+.innovate .innovate_box .innovate_a .innovate_a_three .innovate_a_three_lt .in_lt_a .in_lt_a2 {
+    width: 50%;
+    color: #fff;
+    font-size: 16px;
+    line-height: 24px;
+    margin-top: 10%;
+    padding: 3% 4%;
+}
+
+.innovate .innovate_box .innovate_a .innovate_a_three .innovate_a_three_rt {
+    width: 50%;
+}
+
+.innovate .innovate_box .innovate_a .innovate_a_three .innovate_a_three_rt .in_lt_b {
+    background: url("../../../front-end-picture/ys_bg2.jpg") no-repeat center center;
+    height: 260px;
+    width: 100%;
+    background-size: cover;
+}
+
+.innovate .innovate_box .innovate_a .innovate_a_three .innovate_a_three_rt .in_lt_b .in_lt_b1:hover .in_lt_b1_one,
+.innovate .innovate_box .innovate_a .innovate_a_three .innovate_a_three_rt .in_lt_b .in_lt_b1:hover .in_lt_b1_two {
+    display: none;
+}
+
+.innovate .innovate_box .innovate_a .innovate_a_three .innovate_a_three_rt .in_lt_b .in_lt_b1:hover .in_lt_b1_three {
+    display: block;
+}
+
+.innovate .innovate_box .innovate_a .innovate_a_three .innovate_a_three_rt .in_lt_b .in_lt_b1 {
+    float: left;
+    width: 33.3%;
+    text-align: center;
+    border-right: 1px solid #fff;
+    height: 100%;
+    padding-top: 15%;
+}
+
+.innovate .innovate_box .innovate_a .innovate_a_three .innovate_a_three_rt .in_lt_b .in_lt_b1 .in_lt_b1_two {
+    color: #fff;
+    font-size: 18px;
+    margin-top: 8%;
+}
+
+.innovate .innovate_box .innovate_a .innovate_a_three .innovate_a_three_rt .in_lt_b .in_lt_b1 .in_lt_b1_three {
+    color: #fff;
+    display: none;
+}
+
+.innovate .innovate_box .innovate_b {
+    width: 100%;
+    margin-top: 7%;
+}
+
+.innovate .innovate_box .innovate_b .innovate_b_title {
+    font-size: 48px;
+    color: #003677;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 5%;
+}
+
+.innovate .innovate_box .innovate_b .zs_tab {
+    max-width: 920px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.innovate .innovate_box .innovate_b .zs_tab ul li {
+    float: left;
+    width: 20%;
+}
+
+.innovate .innovate_box .innovate_b .zs_tab ul li span {
+    color: #757575;
+    display: block;
+    text-align: center;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.innovate .innovate_box .innovate_b .zs_tab ul li.tab_active span {
+    color: #003677;
+}
+
+.innovate .zs_tabs {
+    background: url(../images/ys_bg3.jpg) no-repeat center center;
+    width: 100%;
+    height: 806px;
+    background-size: cover;
+    margin-top: 4%;
+    display: none;
+}
+
+.innovate .zs_tabs .zs_tabs_lt {
+    width: 50%;
+    background: rgba(0, 0, 0, 0.5);
+    filter: progid: DXImageTransform.Microsoft.gradient(startcolorstr=#7F000000, endcolorstr=#7F000000);
+    height: 100%;
+    padding-top: 75px;
+}
+
+.innovate .zs_tabs .zs_tabs_lt .zs_tabs_box {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.innovate .zs_tabs .zs_tabs_lt .zs_tabs_box .zs_tabs_lt_a img {
+    max-width: 400px;
+    width: 100%;
+}
+
+.innovate .zs_tabs .zs_tabs_lt .zs_tabs_box .zs_tabs_lt_b {
+    padding: 3.5% 4%;
+    max-width: 400px;
+    color: #fff;
+    font-size: 24px;
+    text-align: center;
+    background: #003677;
+}
+
+.innovate .zs_tabs .zs_tabs_rt {
+    width: 50%;
+    background: rgba(0, 54, 119, 0.57);
+    filter: progid: DXImageTransform.Microsoft.gradient(startcolorstr=#7F003677, endcolorstr=#7F003677);
+    height: 100%;
+    padding-left: 5%;
+    padding-top: 60px;
+}
+
+.innovate .zs_tabs .zs_tabs_rt .zs_tabs_rt_a {
+    font-size: 48px;
+    color: #fff;
+    margin-bottom: 5%;
+}
+
+.innovate .zs_tabs .zs_tabs_rt .zs_tabs_rt_a {
+    font-size: 48px;
+    color: #fff;
+    margin-bottom: 5%;
+}
+
+.innovate .zs_tabs .zs_tabs_rt .zs_tabs_rt_c {
+    margin-top: 5%;
+    max-width: 518px;
+    height: 510px;
+    overflow-y: scroll;
+}
+
+.innovate .zs_tabs .zs_tabs_rt .zs_tabs_rt_c ul li {
+    width: 35%;
+    float: left;
+    background: url(../images/li_bg.jpg) no-repeat center center;
+    background-size: cover;
+    text-align: center;
+    margin-right: 7%;
+    margin-bottom: 7%;
+    overflow: hidden;
+    position: relative;
+}
+
+.innovate .zs_tabs .zs_tabs_rt .zs_tabs_rt_c ul li img {
+    display: inline-block;
+    width: 57%;
+    height: 142px;
+}
+
+.innovate .pp {
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 7%;
+}
+
+.innovate .pp .pp_box {
+    max-width: 1250px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.innovate .pp .pp_box .pp_title {
+    font-size: 48px;
+    color: #003677;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 5%;
+}
+
+.innovate .pp .pp_box .pp_hd {
+    font-size: 18px;
+    letter-spacing: 3px;
+    text-indent: 2em;
+    line-height: 30px;
+    margin-bottom: 3%;
+}
+
+.innovate .pp .pp_box .pp_swiper {
+    width: 100%;
+    margin-top: 4%;
+    height: 450px;
+    overflow: hidden;
+}
+
+.innovate .pp .pp_box .pp_swiper .swiper-container {
+    position: relative;
+    height: 450px;
+}
+
+.innovate .pp .pp_box .pp_swiper .swiper-container .swiper-slide {
+    width: 1250px;
+    overflow: hidden;
+}
+
+.innovate .pp .pp_box .pp_swiper ul {
+    border: 2px solid #a6a6a6;
+    border-right: 0;
+    border-bottom: 0;
+    overflow: hidden;
+}
+
+.innovate .pp .pp_box .pp_swiper ul li {
+    border: 2px solid #a6a6a6;
+    border-left: 0;
+    border-top: 0;
+    padding: 0;
+}
+
+.innovate .pp .pp_box .pp_swiper ul li img {
+    width: 100%;
+}
+
+.innovate .pp .pp_box .pp_swiper .swiper-container .swiper-pagination-switch {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 8px;
+    background: #555;
+    margin: 0 5px;
+    opacity: .8;
+    filter: alpha(opacity=80);
+    border: 1px solid #fff;
+    cursor: pointer;
+}
+
+.innovate .pp .pp_box .pp_swiper .swiper-container .swiper-active-switch {
+    background: #003677;
+    width: 12px;
+    height: 12px;
+    border-radius: 12px;
+}
+
+.pp_hide {
+    display: none;
+}
+
+.innovate .pp .pp_box .pp_swiper .swiper-container .pagination {
+    position: absolute;
+    z-index: 20;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+    overflow: hidden;
+}
+
+.pagination {
+    display: inline-block;
+    padding-left: 0;
+    border-radius: 4px;
+}

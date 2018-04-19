@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <include file="public:head" />
+
+    <link rel="stylesheet" href="__CSS__/contact.css">
+    <!--引用百度地图API-->
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=MadbXnGYQdQlAQvnQPQK69pEPdk1BMb1"></script>
+</head>
+
+<body>
+
+    <include file="public:head_menu" />
+
+    <div class="rw">
+        <include file="public:head_min_menu" />
+        <!--走进锐堃-联系我们 主体 start-->
+        <div class="contact">
+            <div class="contact_box">
+                <div class="contact_title">
+                    联系我们
+                </div>
+                <div class="contact_dt">
+                    <div style="width:100%;height:550px;border:#ccc solid 1px;font-size:12px" id="map"></div>
+
+                </div>
+                <div class="contact_main container clearfix">
+                    <div class="contact_lt col-lg-6 col-md-6">
+                        <div class="contact_lt_a">集团信息</div>
+                        <div class="contact_lt_b clearfix">
+                            <span class="fl">地址：</span> <i class="fl">中国山东省东营市垦利行政新区民丰路锐堃大厦</i>
+                        </div>
+                        <div class="contact_lt_b clearfix">
+                            <span class="fl">邮箱：</span> <i class="fl">wanda@chinawanda.com</i>
+                        </div>
+                        <div class="contact_lt_b clearfix">
+                            <span class="fl">主页：</span> <i class="fl">http://www.chinawanda.com/</i>
+                        </div>
+                        <div class="contact_lt_b clearfix">
+                            <span class="fl">电话：</span> <i class="fl">0546-2061318</i>
+                        </div>
+                        <div class="contact_lt_b clearfix">
+                            <span class="fl">传真：</span> <i class="fl">0546-2061318</i>
+                        </div>
+                        <div class="contact_lt_b clearfix">
+                            <span class="fl">人资部：</span> <i class="fl">0546-2896589</i>
+                        </div>
+                        <div class="contact_lt_b clearfix">
+                            <span class="fl">邮编：</span> <i class="fl">257500</i>
+                        </div>
+                    </div>
+                    <div class="contact_rt col-lg-6 col-md-6">
+                        <div class="contact_rt_a">
+                            在线留言
+                        </div>
+                        <div class="contact_rt_b">
+                            <form action="" id="online_form">
+                                <div class="contact_rt_b1">
+                                    <input name="company" type="text" placeholder="公司名称">
+                                </div>
+                                <div class="contact_rt_b2 clearfix">
+                                    <input name="name" type="text" class="fl" placeholder="您的姓名">
+                                    <input name="tel" type="text" class="fr" placeholder="您的电话">
+                                </div>
+                                <div class="contact_rt_b3">
+                                    <input name="message" type="text" placeholder="请输入留言">
+                                </div>
+                                <div class="contact_rt_b4">
+                                    <input type="hidden" name="__token__" value="c62bcf70ad8072162a310c76bd5f9826" /> <input type="button" id="online_form_button" value="发送">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--走进锐堃-联系我们 主体 end-->
+    </div>
+      <include file="public:footer" />
+    <script>
+        //创建和初始化地图函数：
+        function initMap() {
+            createMap(); //创建地图
+            setMapEvent(); //设置地图事件
+            addMapControl(); //向地图添加控件
+            addMapOverlay(); //向地图添加覆盖物
+        }
+
+        function createMap() {
+            map = new BMap.Map("map");
+            map.centerAndZoom(new BMap.Point(120.273524, 30.200167), 17);
+        }
+
+        function setMapEvent() {
+            map.enableScrollWheelZoom();
+            map.enableKeyboard();
+            map.enableDragging();
+            map.enableDoubleClickZoom()
+        }
+
+        function addClickHandler(target, window) {
+            target.addEventListener("click", function() {
+                target.openInfoWindow(window);
+            });
+        }
+
+        function addMapOverlay() {
+            var markers = [{
+                content: "",
+                title: "浙江锐堃互联网有限公司",
+                imageOffset: {
+                    width: -23,
+                    height: -21
+                },
+                position: {
+                    lat: 30.199667,
+                    lng: 120.273587
+                }
+            }];
+            for (var index = 0; index < markers.length; index++) {
+                var point = new BMap.Point(markers[index].position.lng, markers[index].position.lat);
+                var marker = new BMap.Marker(point, {
+                    icon: new BMap.Icon("http://api.map.baidu.com/lbsapi/createmap/images/icon.png", new BMap.Size(20, 25), {
+                        imageOffset: new BMap.Size(markers[index].imageOffset.width, markers[index].imageOffset.height)
+                    })
+                });
+                var label = new BMap.Label(markers[index].title, {
+                    offset: new BMap.Size(25, 5)
+                });
+                var opts = {
+                    width: 200,
+                    title: markers[index].title,
+                    enableMessage: false
+                };
+                var infoWindow = new BMap.InfoWindow(markers[index].content, opts);
+                marker.setLabel(label);
+                addClickHandler(marker, infoWindow);
+                map.addOverlay(marker);
+            };
+        }
+        //向地图添加控件
+        function addMapControl() {
+            var scaleControl = new BMap.ScaleControl({
+                anchor: BMAP_ANCHOR_BOTTOM_LEFT
+            });
+            scaleControl.setUnit(BMAP_UNIT_IMPERIAL);
+            map.addControl(scaleControl);
+            var navControl = new BMap.NavigationControl({
+                anchor: BMAP_ANCHOR_TOP_LEFT,
+                type: BMAP_NAVIGATION_CONTROL_LARGE
+            });
+            map.addControl(navControl);
+            var overviewControl = new BMap.OverviewMapControl({
+                anchor: BMAP_ANCHOR_BOTTOM_RIGHT,
+                isOpen: true
+            });
+            map.addControl(overviewControl);
+        }
+        var map;
+        initMap();
+    </script>
+</body>
+
+</html>

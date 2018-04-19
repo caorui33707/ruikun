@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>注册</title>
+    <link rel="stylesheet" href="__CSS__/login.css">
+    <link rel="stylesheet" href="__CSS__/public.css">
+</head>
+
+<body>
+<div class="wrap wrap1">
+    <!--主题-->
+    <div class="wrap_box">
+        <div class="login_header">
+            <div class="login_header_lt fl">
+                <div class="login_header_lt_a fl">
+                    <a href="/">
+                        <img src="###" alt="">
+                    </a>
+                </div>
+                <div class="login_header_lt_b fl">
+                    <a href="##">注册</a>
+                </div>
+            </div>
+            <div class="login_header_rt fr">
+                <a href="javascript:history.back(-1)">返 &nbsp; 回</a>
+            </div>
+        </div>
+        <div class="login_form login_form1">
+            <div class="login_form_box">
+                <form action="###" method="post" onsubmit="" id="LoginForm">
+                    <div class="registration">
+                        <div class="reg_hd">
+                            <span class="reg_hd_active">手机注册</span>
+                        </div>
+                        <div class="reg_zc" style="display: block;">
+                            <div class="login_form_a">
+                                <input type="text" class="form-control phone-test" id="userPhone" name="tel" placeholder="请输入手机号">
+                                <span class="err_mes">输入有误</span>
+                            </div>
+                        </div>
+                        <div class="login_form_a">
+                            <input type="password" class="form-control pass-test" id="userPass" name="password" placeholder="请输入密码">
+                            <span class="err_mes">输入有误</span>
+                        </div>
+                        <div class="login_form_a">
+                            <input type="password" class="form-control pass-again-test" id="userPass_true" name="password_c" placeholder="请再次输入密码">
+                            <span class="err_mes">输入有误</span>
+                        </div>
+                        <div class="login_form_a reg_form_a">
+                            <div class="reg_form_lt fl">
+                                <input type="text" class="form-control code" id="usercode" name="captcha" placeholder="图形验证码">
+                                <span class="err_mes">输入有误</span>
+                            </div>
+                            <div class="reg_form_rt fr">
+                                <img src="/verify_code" data-id="" id="click_refush" style="width:153px;height: 53px;" alt="验证码" />
+                            </div>
+                        </div>
+                        <div class="sms_main">
+                            <div class="sms_main_b">
+                                <input type="text" id="sms_code" name="sms_code" class="code form-control" placeholder="4位短信验证码">
+                                <span class="err_mes text-left">输入有误</span>
+                            </div>
+                            <div class="sms_main_c">
+                                <a href="##">
+                                    <input type="button" value="获取短信验证码" id="btnSendCode">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="login_form_c">
+                            <div class="cart_cover fl">
+                                <div class="cart_cover_a fl">
+                                    <input id="wj2" class="fl cart_cover_in" type="checkbox">
+                                </div>
+                                <div class="cart_cover_b fl">
+                                    <a target="_blank" href="###">
+                                        同意锐堃人才招聘网声明
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="login_form_d ">
+
+                            <input id="registration_sub" style="outline: none" type="button" value="注册">
+
+                        </div>
+                    </div>
+                    <input type="hidden" name="__token__" value="8e9920c9ccdae7adda8c7ae310b78ed5" /> </form>
+            </div>
+            <div class="login_form_foot">
+                有账号? <a href="./login"> 立即登录 &gt;&gt;</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!--主题-->
+</body>
+
+</html>

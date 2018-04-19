@@ -1,0 +1,366 @@
+/* enter CSS */
+
+.rw {
+    background: #fff;
+}
+
+.rw .rw_box {
+    max-width: 1250px;
+    margin: 0 auto;
+    padding-top: 7%;
+}
+
+.rw .rw_box .pp {
+    overflow: hidden;
+}
+
+.rw .rw_box .pp .pp_box .pp_title {
+    font-size: 48px;
+    color: #003677;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 5%;
+}
+
+.rw .rw_box .pp .pp_box .pp_hd {
+    font-size: 18px;
+    letter-spacing: 3px;
+    text-indent: 2em;
+    line-height: 30px;
+    margin-bottom: 3%;
+}
+
+.rw .rw_box .pp .pp_box .philosophy .philosophy_lt {
+    width: 48%;
+    padding: 5%;
+    background: url("../img/front-end-picture/ln1.jpg") no-repeat center center;
+    background-size: cover;
+    height: 614px;
+}
+
+.rw .rw_box .pp .pp_box .philosophy .philosophy_lt .philosophy_lt_a {
+    font-size: 36px;
+    color: #fff;
+}
+
+.rw .rw_box .pp .pp_box .philosophy .philosophy_lt .philosophy_lt_b {
+    font-size: 18px;
+    color: #fff;
+    line-height: 36px;
+    margin-top: 15%;
+    word-break: break-all;
+}
+
+.rw .rw_box .pp .pp_box .philosophy .philosophy_lt .philosophy_lt_c {
+    margin-top: 25%;
+}
+
+.rw .rw_box .pp .pp_box .philosophy .philosophy_lt .philosophy_lt_c a {
+    color: #fff;
+    display: inline-block;
+    padding: 8px 25px;
+    font-size: 21px;
+    border: 1px solid #fff;
+}
+
+.rw .rw_box .pp .pp_box .philosophy .philosophy_rt {
+    width: 48%;
+}
+
+.rw .rw_box .pp .pp_box .philosophy .philosophy_rt .philosophy_rt_box .philosophy_rt_a {
+    background: #003677;
+    height: 290px;
+    color: #fff;
+    padding: 10% 7%;
+}
+
+.rw .rw_box .pp .pp_box .philosophy .philosophy_rt .philosophy_rt_box .philosophy_rt_a .philosophy_rt_a1 {
+    font-size: 36px;
+    margin-bottom: 15%;
+}
+
+.rw .rw_box .pp .pp_box .philosophy .philosophy_rt .philosophy_rt_box .philosophy_rt_a .philosophy_rt_a2 {
+    font-size: 24px;
+}
+
+.rw .rw_box .pp .pp_box .philosophy .philosophy_rt .philosophy_rt_box .philosophy_rt_b {
+    background: url("../img/front-end-picture/ln2.jpg") no-repeat center center;
+    background-size: cover;
+    height: 290px;
+    padding: 10% 7%;
+    color: #fff;
+    margin-top: 32px;
+}
+
+.rw .rw_box .pp .pp_box .philosophy .philosophy_rt .philosophy_rt_box .philosophy_rt_b .philosophy_rt_b1 {
+    font-size: 36px;
+    margin-bottom: 15%;
+}
+
+.rw .rw_box .pp .pp_box .philosophy .philosophy_rt .philosophy_rt_box .philosophy_rt_b .philosophy_rt_b2 {
+    font-size: 24px;
+}
+
+.rw .pp_title_rw {
+    font-size: 48px;
+    color: #003677;
+    margin: 0 auto;
+    width: 100%;
+    text-align: center;
+    max-width: 1250px;
+    margin-top: 7%;
+    margin-bottom: 3%;
+}
+
+.rw .pp_hd_rw {
+    font-size: 18px;
+    letter-spacing: 3px;
+    margin: 0 auto;
+    text-indent: 2em;
+    line-height: 30px;
+    margin-bottom: 3%;
+    max-width: 1250px;
+}
+
+.st_date {
+    width: 100%;
+    background: #f6f6f6;
+    padding: 30px 0;
+    overflow: hidden;
+}
+
+.st_date .st_date_box {
+    max-width: 1250px;
+    margin: 0 auto;
+}
+
+.st_date .st_date_box .st_date_lt {
+    width: 25%;
+    border-right: 1px solid #e4e4e4;
+}
+
+.st_date .st_date_box .st_date_lt ul li.st_active {
+    color: #003677;
+}
+
+.st_date .st_date_box .st_date_lt ul li {
+    cursor: pointer;
+    position: relative;
+    text-align: right;
+}
+
+.st_date .st_date_box .st_date_lt ul li .st_date_lt_d {
+    width: 80%;
+    border-bottom: 1px solid #e4e4e4;
+    padding-bottom: 15px;
+}
+
+.st_date .st_date_box .st_date_lt ul li .st_date_lt_a {
+    font-size: 28px;
+    line-height: 24px;
+    padding: 40px 0px;
+}
+
+.st_date .st_date_box .st_date_lt ul li .st_date_lt_b {
+    font-size: 22px;
+}
+
+.st_date .st_date_box .st_date_lt ul li.st_active .st_date_lt_c span {
+    display: block;
+}
+
+.st_date .st_date_box .st_date_lt ul li .st_date_lt_c span {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: block;
+    width: 5px;
+    height: 110%;
+    background: #003677;
+    display: none;
+}
+
+.st_date .st_date_box .st_date_lt ul li.st_active .st_date_lt_c i {
+    display: block;
+}
+
+.st_date .st_date_box .st_date_lt ul li .st_date_lt_c i {
+    position: absolute;
+    top: 40px;
+    right: -8px;
+    display: block;
+    width: 13px;
+    height: 13px;
+    border-radius: 100%;
+    border: 2px solid #003677;
+    display: none;
+}
+
+.st_date .st_date_box .st_date_rt {
+    width: 74%;
+    overflow-y: scroll;
+    display: none;
+}
+
+.st_date .st_date_box .st_date_rt ul {
+    width: 90%;
+    height: 715px;
+    overflow-y: scroll;
+    overflow: hidden;
+}
+
+.st_date .st_date_box .st_date_rt ul li {
+    background: #fff;
+    padding: 5%;
+    box-shadow: 0 3px 5px 5px #f4f4f4;
+    -moz-box-shadow: 0 3px 5px 5px #f4f4f4;
+    -webkit-box-shadow: 0 3px 5px 5px #f4f4f4;
+    position: relative;
+    margin-bottom: 5%;
+}
+
+.st_date .st_date_box .st_date_rt ul li .st_date_rt_a {
+    font-size: 30px;
+    color: #323232;
+    margin-bottom: 30px;
+}
+
+.st_date .st_date_box .st_date_wl {
+    width: 80%;
+    text-align: right;
+}
+
+.st_date .st_date_box .st_date_wl a {
+    font-size: 22px;
+    display: inline-block;
+    padding: 40px 0;
+}
+
+.st_date .st_date_box .st_date_rt {
+    width: 74%;
+    overflow-y: scroll;
+    display: none;
+}
+
+.st_date .st_date_box .st_date_rt ul {
+    width: 90%;
+}
+
+.st_date .st_date_box .st_date_rt ul li {
+    background: #fff;
+    padding: 5%;
+    box-shadow: 0 3px 5px 5px #f4f4f4;
+    -moz-box-shadow: 0 3px 5px 5px #f4f4f4;
+    -webkit-box-shadow: 0 3px 5px 5px #f4f4f4;
+    position: relative;
+    margin-bottom: 5%;
+}
+
+.st_date .st_date_box .st_date_rt ul li .st_date_rt_a {
+    font-size: 30px;
+    color: #323232;
+    margin-bottom: 30px;
+}
+
+.innovate {
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 3%;
+}
+
+.innovate .pp {
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 7%;
+}
+
+.innovate .pp .pp_box {
+    max-width: 1250px;
+    margin: 0 auto;
+}
+
+.innovate .pp .pp_box .pp_title {
+    font-size: 48px;
+    color: #003677;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 5%;
+}
+
+.innovate .pp .pp_box .pp_hd {
+    font-size: 18px;
+    letter-spacing: 3px;
+    text-indent: 2em;
+    line-height: 30px;
+    margin-bottom: 3%;
+}
+
+.innovate .pp .pp_box .pp_swiper {
+    width: 100%;
+    margin-top: 4%;
+    height: 450px;
+}
+
+.innovate .pp .pp_box .pp_swiper .swiper-container {
+    position: relative;
+}
+
+.innovate .pp .pp_box .pp_swiper ul {
+    border: 2px solid #a6a6a6;
+    border-right: 0;
+    border-bottom: 0;
+}
+
+.innovate .pp .pp_box .pp_swiper ul li {
+    border: 2px solid #a6a6a6;
+    border-left: 0;
+    border-top: 0;
+    padding: 0;
+}
+
+.innovate .pp .pp_box .pp_swiper ul li .pp_show {
+    display: block;
+}
+
+.innovate .pp .pp_box .pp_swiper ul li .pp_hide {
+    display: none;
+}
+
+.innovate .pp .pp_box .pp_swiper ul li img {
+    width: 100%;
+}
+
+.innovate .pp .pp_box .pp_swiper .swiper-container .pagination {
+    position: absolute;
+    z-index: 20;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+}
+
+.pagination {
+    display: inline-block;
+    padding-left: 0;
+    margin: 20px 0;
+    border-radius: 4px;
+}
+
+.innovate .pp .pp_box .pp_swiper .swiper-container .swiper-pagination-switch {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 8px;
+    background: #555;
+    margin: 0 5px;
+    opacity: .8;
+    filter: alpha(opacity=80);
+    border: 1px solid #fff;
+    cursor: pointer;
+}
+
+.innovate .pp .pp_box .pp_swiper .swiper-container .swiper-active-switch {
+    background: #003677;
+    width: 12px;
+    height: 12px;
+    border-radius: 12px;
+}

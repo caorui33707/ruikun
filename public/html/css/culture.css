@@ -1,0 +1,229 @@
+@media (min-width: 1200px) {
+    .col-lg-4 {
+        width: 33.33333333%;
+    }
+}
+
+.culture {
+    width: 100%;
+    margin: 0 auto;
+    background: #fff;
+}
+
+.culture .culture_box {
+    max-width: 1250px;
+    margin: 0 auto;
+}
+
+.culture .culture_box .culture_strength {
+    width: 100%;
+    margin: 0 auto;
+    padding-top: 7%;
+}
+
+.culture .culture_box .culture_strength .strength_title {
+    color: #003677;
+    font-size: 36px;
+    letter-spacing: 3px;
+    margin-bottom: 3%;
+    text-align: center;
+}
+
+.culture .culture_box .culture_strength .strength_hd {
+    text-indent: 2em;
+    max-width: 1050px;
+    margin: 0 auto;
+    line-height: 30px;
+    font-size: 18px;
+    letter-spacing: 2px;
+}
+
+.culture .culture_box .culture_strength .strength_main {
+    width: 100%;
+    margin-top: 4%;
+    overflow: hidden;
+}
+
+.culture .culture_box .culture_strength .strength_main .strength_main_lt {
+    width: 65%;
+    color: #fff;
+    overflow: hidden;
+    position: relative;
+}
+
+.culture .culture_box .culture_strength .strength_main .strength_main_lt .strength_main_lt_a img {
+    width: 100%;
+    animation: scale_c 25s linear infinite alternate;
+    height: 479px;
+}
+
+.culture .culture_box .culture_strength .strength_main .strength_main_lt .strength_main_lt_b {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    padding: 4%;
+}
+
+.culture .culture_box .culture_strength .strength_main .strength_main_lt .strength_main_lt_b .strength_main_lt_b1 {
+    font-size: 36px;
+    margin-top: 40%;
+    margin-bottom: 2%;
+}
+
+.culture .culture_box .culture_strength .strength_main .strength_main_lt .strength_main_lt_b .strength_main_lt_b2 {
+    font-size: 18px;
+    letter-spacing: 2px;
+    line-height: 36px;
+}
+
+.culture .culture_box .culture_strength .strength_main .strength_main_rt {
+    width: 30%;
+}
+
+.culture .culture_box .culture_strength .strength_main .strength_main_rt .strength_main_rt_a {
+    background-size: cover;
+    height: 229px;
+    margin-bottom: 21px;
+    position: relative;
+    background: url("../../../backend-picture/cb537385b2cc6116a712bbae21cb29e3.png") no-repeat center center;
+}
+
+.culture .culture_box .culture_strength .strength_main .strength_main_rt .strength_main_rt_a span {
+    position: absolute;
+    bottom: 10%;
+    color: #fff;
+    font-size: 30px;
+    display: inline-block;
+    padding: 5%;
+}
+
+.culture .culture_box .culture_strength .strength_main .strength_main_rt .strength_main_rt_b {
+    background-size: cover;
+    height: 229px;
+    position: relative;
+}
+
+.culture .culture_box .culture_strength .strength_main .strength_main_rt .strength_main_rt_b span {
+    position: absolute;
+    bottom: 10%;
+    color: #fff;
+    font-size: 30px;
+    display: inline-block;
+    padding: 5%;
+}
+
+.culture .culture_box .culture_strength .strength_list {
+    width: 100%;
+    margin-top: 40px;
+    overflow: hidden;
+}
+
+.culture .culture_box .culture_strength .strength_list ul li {
+    padding: 0 8px;
+}
+
+.culture .culture_box .culture_strength .strength_list ul li .strength_list_a {
+    font-size: 22px;
+    color: #003677;
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    background: #f2f2f2;
+}
+
+.culture .culture_box .culture_strength .strength_list ul li .strength_list_b {
+    overflow: hidden;
+}
+
+.culture .culture_box .culture_strength .strength_list ul li .strength_list_b img {
+    width: 100%;
+    display: block;
+}
+
+.culture .culture_box .culture_charm {
+    width: 100%;
+    margin-top: 7%;
+}
+
+.culture .culture_box .culture_charm .charm_title {
+    color: #003677;
+    font-size: 36px;
+    letter-spacing: 3px;
+    margin-bottom: 3%;
+    text-align: center;
+}
+
+.culture .culture_box .culture_charm .charm_hd {
+    text-indent: 2em;
+    max-width: 1050px;
+    margin: 0 auto;
+    line-height: 30px;
+    font-size: 18px;
+    letter-spacing: 2px;
+}
+
+.culture .culture_box .culture_charm .charm_list {
+    width: 100%;
+    margin-top: 3%;
+    overflow: hidden;
+}
+
+.culture .culture_box .culture_charm .charm_list ul li {
+    margin-bottom: 10px;
+}
+
+.culture .culture_box .culture_charm .charm_list ul li .charm_list_a img {
+    width: 100%;
+    display: block;
+}
+
+.culture .culture_box .culture_charm .charm_list ul li .charm_list_b {
+    padding: 10px 0;
+    width: 100%;
+    font-size: 22px;
+    color: #4c4c4c;
+    text-align: center;
+}
+
+.culture .culture_box .culture_charm {
+    width: 100%;
+    margin-top: 7%;
+}
+
+.culture .culture_box .culture_charm .charm_title {
+    color: #003677;
+    font-size: 36px;
+    letter-spacing: 3px;
+    margin-bottom: 3%;
+    text-align: center;
+}
+
+.culture .culture_box .culture_charm .charm_hd {
+    text-indent: 2em;
+    max-width: 1050px;
+    margin: 0 auto;
+    line-height: 30px;
+    font-size: 18px;
+    letter-spacing: 2px;
+}
+
+.culture .culture_box .culture_charm .dynamic_more {
+    text-align: center;
+    width: 200px;
+    margin: 0 auto;
+    margin-top: 8%;
+    cursor: pointer;
+}
+
+.culture .culture_box .culture_charm .dynamic_more img {
+    height: 55px;
+    vertical-align: -18px;
+    margin-right: 20px;
+}
+
+.culture .culture_box .culture_charm .dynamic_more span {
+    font-size: 24px;
+    color: #757575;
+    letter-spacing: 2px;
+}
