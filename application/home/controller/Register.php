@@ -20,7 +20,11 @@ class Register extends Controller{
         //$returnCode  = cookie('authcode_'.$ip);
 
         //file_put_contents('D:/authcode_get_'.$ip,$returnCode);
-        $returnCode = file_get_contents($file);
+        if(is_file($file)) {
+            $returnCode = @file_get_contents($file);
+        }else{
+            $returnCode = '111';
+        }
 
 
         $mobile =  input('post.mobile','');

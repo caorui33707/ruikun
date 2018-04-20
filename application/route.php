@@ -31,3 +31,15 @@ Route::rule([
     'enter/strategy'=>'enter/strategy',
 ]);
 
+
+//admin 后端
+Route::rule([
+    'admin'=>'admin/index/index',
+    'admin/nav'=>'admin/navigator/add',
+    'admin/navList'=>'admin/index/navList',
+]);
+
+Route::any([
+    'admin/navListLevel/:pid'=>'admin/index/navListLevel',
+]);
+

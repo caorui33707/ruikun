@@ -146,6 +146,8 @@ return [
         '__CSS__'=>__ROOT__.'/html/css',
         '__JS__'=>__ROOT__.'/html/js',
         '__IMG__'=>__ROOT__.'/html/img',
+        '__ASS__'=>__ROOT__.'/template/admin/assets',
+        '__MAIN__'=>__ROOT__.'/template/admin/main',
     ],
     // 默认跳转页面对应的模板文件
     'dispatch_success_tmpl'  => THINK_PATH . 'tpl' . DS . 'dispatch_jump.tpl',
