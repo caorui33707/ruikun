@@ -85,8 +85,11 @@
 
     $.ajax({
             url: "/admin/navListLevel",
-            method:"get",
+            method:"post",
+            data: {pid:"0"},
+            dataType: "json",
             success: function(data){
+
                     var option = '';
                 $.each(data,function (k,v) {
 

@@ -3,104 +3,190 @@
  <head>
   <title> </title>
    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link href="../assets/css/dpl-min.css" rel="stylesheet" type="text/css" />
-    <link href="../assets/css/bui-min.css" rel="stylesheet" type="text/css" />
-    <link href="../assets/css/page-min.css" rel="stylesheet" type="text/css" />   <!-- 下面的样式，仅是为了显示代码，而不应该在项目中使用-->
-   <link href="../assets/css/prettify.css" rel="stylesheet" type="text/css" />
+    <link href="/template/admin/assets/css/dpl-min.css" rel="stylesheet" type="text/css" />
+    <link href="/template/admin/assets/css/bui-min.css" rel="stylesheet" type="text/css" />
+    <link href="/template/admin/assets/css/page-min.css" rel="stylesheet" type="text/css" />   <!-- 下面的样式，仅是为了显示代码，而不应该在项目中使用-->
+   <link href="/template/admin/assets/css/prettify.css" rel="stylesheet" type="text/css" />
    <style type="text/css">
-    code {
-      padding: 0px 4px;
-      color: #d14;
-      background-color: #f7f7f9;
-      border: 1px solid #e1e1e8;
-    }
+      input{
+        min-width: 200px;
+        padding: 0 10px;
+      }
+      .container{
+        width: 80%;
+        margin: 0 auto;
+      }
+      .text{
+        margin-top: 30px;
+      }
+      .text .title{
+        margin-bottom: 30px;
+      }
+      .text .title input{
+        border: 1px solid #3F5694;
+        min-height: 30px;
+      }
+      .text .content{
+        margin-bottom: 30px;
+      }
+      .text .content input{
+        border: 1px solid #3F5694;
+        min-width: 400px;
+        min-height: 100px;
+      }
+      .btn button{
+          border: none;
+          width: 60px;
+          height: 30px;
+          background: #00AD19;
+          color: #fff;
+          margin-left: 30%;
+      }
    </style>
  </head>
  <body>
-  
-    <div class="container">
-      <div class="row">
-        <div class="span8">
-          <h2>简介</h2>
-          <p>左侧菜单包含二级菜单：（右图所示）</p>
-          <ol>
-            <li>用于分类的二级菜单</li>
-            <li>用于打开页面的三级菜单</li>
-          </ol>
-          <p>菜单的配置项比较简单，每个对象代表一个左侧菜单，一个模块有一个左侧菜单包含以下字段：</p>
-          <ol>
-            <li>id:模块的编号，用于定位模块</li>
-            <li>homePage:模块默认显示的主页，使用页面的id</li>
-            <li>collapse:左侧菜单是否默认收缩,默认false</li>
-            <li>menu：菜单的集合，是一个数组，其中每个对象代表一个二级菜单</li>
-          </ol>
-          <p>二级菜单的配置项：<p>
-          <ol>
-            <li>text:文本</li>
-            <li>collapsed：是否收缩，默认false</li>
-            <li>closeable: 是否可以关闭标签，默认true，如果设置成首页，可以将此属性设为false</li>
-            <li>items：三级菜单集合</li>
-          </ol>
-          <p>三级菜单的配置项</p>
-          <ol>
-            <li> id: 页面id,用于避免重复打开页面</li>
-            <li>text:标题，同时是打开tab的标题</li>
-            <li>href:页面URL</li>
-          </ol>
-        </div>
-        <div class="span16">
-          <h2>图示</h2>
-          <img src="../assets/img/menu.jpg" alt="">
-          <h3>示例</h3>
-          <pre class="prettyprint linenums">
-var config = [{   //模块菜单
-  id:'menu',      //模块编号
-  collapsed:true, //默认左侧菜单收缩
-  homePage:'code', //默认打开的主页
-  menu:[{         //二级菜单
-      text:'首页内容',
-      items:[   //三级菜单
-        {id:'code',text:'首页代码',href:'main/code.html',closeable : false}, //设置不能关闭标签
-        {id:'c',text:'标签页',href:'test.html'},
-        {id:'d',text:'窗口变化',href:'test.html'},
-        {id:'e',text:'首页资源文件',href:'test.html'},
-        {id:'g',text:'其他',href:'test.html'}
-      ]
-    },{
-      //二级菜单
-      
-    },{
-      //二级菜单
-  }]
-},{
-  
-  //模块菜单
-}];
-//初始化主页菜单
-new PageUtil.MainPage({
-  modulesConfig : config
-});
-          </pre>
-        </div>
-      </div>
-      <div class="row">
-        <div class="span8"></div>
-        <div class="span16"></div>
-      </div>
-    </div>
-  <script type="text/javascript" src="../assets/js/jquery-1.8.1.min.js"></script>
-  <script type="text/javascript" src="../assets/js/bui-min.js"></script>
 
-  <script type="text/javascript" src="../assets/js/config-min.js"></script>
-  <script type="text/javascript">
-    BUI.use('common/page');
-  </script>
-  <!-- 仅仅为了显示代码使用，不要在项目中引入使用-->
-  <script type="text/javascript" src="../assets/js/prettify.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      prettyPrint();
-    });
+    <form action="/admin/article/add" method="post" >
+        <div class="container">
+          <div class="nav">
+              <span>一级菜单：</span>
+              <select name="first_level_menu" id="first_level_menu" onchange="changeSelect(this.selectedIndex)">
+                  <eg name="menu" value="0" >
+                      <option value="0">请选择一级菜单</option>
+                        <foreach name="menu" item="m" >
+                            <option value="$m.id">{$m.name}</option>
+                        </foreach>
+                  </eg>
+              </select>
+              <span>二级菜单：</span>
+              <select name="cat_id" id="two_level_menu"></select>
+          </div>
+          <div class="text">
+              <div class="title">
+                  <span>标题：</span>
+                  <input type="text" name="title" />
+              </div>
+              <div class="content">
+                  <span>内容：</span>
+                  <input type="text" name="content"/>
+              </div>
+          </div>
+          <div class="btn">
+              <button type="submit">提交</button>
+          </div>
+        </div>
+    </form>
+
+    <script src="http://g.tbcdn.cn/fi/bui/jquery-1.8.1.min.js"></script>
+
+  <script>
+
+      function  menuObj(pid=0){
+          var result;
+          $.ajax({
+              type:'get',
+              url:'/admin/navListLevel',
+              dataType:'json',
+              data:{pid:pid},
+              async:false,
+              success:function(data){
+                  result = data;
+              }
+          });
+          return result;
+      }
+
+
+
+      var coordinatesFirst = menuObj();
+
+      console.log(coordinatesFirst);
+
+      var enumObjArr = new Array();
+
+      // if(coordinatesFirst || coordinatesFirst.length) {//初始化页面，把所有坐标列一个列表
+      //     $.each(coordinatesFirst, function(index,term) {
+      //         index++;
+      //         if(term.id) {
+      //             enumObjArr[index] = [term.id,term.name];
+      //          //  enumObjArr[index][term.id] = term.name;
+      //           //  enumObjArr[term.id] = term.id;
+      //         }
+      //     })
+      // }
+
+      for (var i=0;i<coordinatesFirst.length;i++) {
+          enumObjArr[i] = [term.id,term.name];
+      }
+
+
+
+      enumObjArr[0] = [0,"请选择一级菜单"];
+
+
+    var arr_province = enumObjArr;// ["请选择一级菜单","走进锐堃","新闻中心","集团产业","社会责任","人力资源"];
+    var arr_city = [
+                      ["请选择二级菜单"],
+                    //  ['走进锐堃',"董事长致辞","集团介绍","发展战略","研发创新","企业文化","联系我们"],
+                    //  ['锐堃动态','新闻聚焦','循环经济', '在线读报','视频中心'],
+                    // ['国骥网络', '锐享汽贸', '圣手医学', '锐享生物', '积分交易所', '金映农业', '锐族实业', '易金融'],
+                    //  ['责任体系', '社会公益', '光彩事业'],
+                    //  ['人才理念', '人才发展', '社会招聘', '招聘声明']
+                ];
+    //网页加载完成，初始化菜单
+     window.onload = init;//传入函数地址
+     function init(){
+         //首先获取对象
+         var first_level_menu = document.getElementById("first_level_menu");
+         var two_level_menu = document.getElementById("two_level_menu");
+ 
+         //指定省份中<option>标记的个数
+            first_level_menu.length = arr_province.length;
+ 
+         //循环将数组中的数据写入<option>标记中
+         for(var i=0;i<arr_province.length;i++){
+            first_level_menu.options[i].text = arr_province[i][1];
+            first_level_menu.options[i].value = arr_province[i][0];
+         }
+ 
+         //修改省份列表的默认选择项
+         var index = 0;
+         first_level_menu.selectedIndex = index;
+ 
+         //指定城市中<option>标记的个数
+            two_level_menu.length = arr_city[index].length;
+
+ 
+         //循环将数组中的数据写入<option>标记中
+         for (var j = 0; j<arr_city[index].length;j++) {
+            two_level_menu.options[j].text = arr_city[index][j];
+            two_level_menu.options[j].value = 0;
+         }
+     }
+ 
+     function  changeSelect(index){
+
+         var arr_city = menuObj(index);
+
+
+         //选择对象
+         var two_level_menu = document.getElementById("two_level_menu");
+         //修改省份列表的选择项
+         first_level_menu.selectedIndex = index;
+
+         //指定菜单中<option>标记的个数
+
+         //循环将数组中的数据写入<option>标记中
+         var options = '<option value="0">请选择二级菜单</option>';
+         for (var j = 0; j<arr_city.length;j++) {
+             options += '<option value="'+ arr_city[j]['id'] + '">'+ arr_city[j]['name'] + '</option>';
+             //two_level_menu.options[j].text = arr_city[j]['name'];
+         // two_level_menu.options[j].text = arr_city[index][j];
+          // two_level_menu.options[j].value = arr_city[index][j];
+         }
+
+         $("#two_level_menu").html(options);
+     }            
   </script>  
 
 <body>

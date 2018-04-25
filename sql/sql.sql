@@ -45,7 +45,7 @@ CREATE TABLE `nav` (
   PRIMARY KEY (`id`),
   KEY `type` (`type`),
   KEY `ifshow` (`ifshow`)
-) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COMMENT='导航栏';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='导航栏';
 
 CREATE TABLE `username` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -59,7 +59,7 @@ CREATE TABLE `username` (
   UNIQUE KEY `mobile` (`mobile`),
   KEY `register_time` (`register_time`),
   KEY `login_time` (`login_time`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 
 
