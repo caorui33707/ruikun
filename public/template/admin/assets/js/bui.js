@@ -14952,6 +14952,7 @@ define('bui/overlay/dialog',['bui/overlay/overlay'],function (require) {
       buttons:{
         value:[
           {
+              id:'2323',
             text:'\u786e\u5b9a',
             elCls : 'button button-primary',
             handler : function(){
@@ -15286,13 +15287,13 @@ define('bui/overlay/message',['bui/overlay/dialog'],function (require) {
   
   var Alert = messageFun([{
           text:'\u786e\u5b9a',
-          elCls : 'button button-primary',
+          elCls : 'button button-primary 2',
           handler : success
         }
       ],'info'),
     Confirm = messageFun([{
           text:'\u786e\u5b9a',
-          elCls : 'button button-primary',
+          elCls : 'button button-primary 3',
           handler : success
         },{
             text:'\u53d6\u6d88',

@@ -100,7 +100,7 @@
 
       var coordinatesFirst = menuObj();
 
-      console.log(coordinatesFirst);
+      // console.log(coordinatesFirst);
 
       var enumObjArr = new Array();
 
@@ -116,7 +116,7 @@
       // }
 
       for (var i=0;i<coordinatesFirst.length;i++) {
-          enumObjArr[i] = [term.id,term.name];
+          enumObjArr[i] = [coordinatesFirst[i]['id'],coordinatesFirst[i]['name']];
       }
 
 
@@ -166,6 +166,14 @@
  
      function  changeSelect(index){
 
+
+         var options = '<option value="0">请选择二级菜单</option>';
+
+         if(!index){
+             $("#two_level_menu").html(options);
+             return false;
+         }
+
          var arr_city = menuObj(index);
 
 
@@ -177,7 +185,6 @@
          //指定菜单中<option>标记的个数
 
          //循环将数组中的数据写入<option>标记中
-         var options = '<option value="0">请选择二级菜单</option>';
          for (var j = 0; j<arr_city.length;j++) {
              options += '<option value="'+ arr_city[j]['id'] + '">'+ arr_city[j]['name'] + '</option>';
              //two_level_menu.options[j].text = arr_city[j]['name'];

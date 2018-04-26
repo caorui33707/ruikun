@@ -6,6 +6,7 @@
    <link href="__ASS__/css/dpl-min.css" rel="stylesheet" type="text/css" />
   <link href="__ASS__/css/bui-min.css" rel="stylesheet" type="text/css" />
    <link href="__ASS__/css/main-min.css" rel="stylesheet" type="text/css" />
+     <link href="__ASS__/css/login.css" rel="stylesheet" type="text/css" />
  </head>
  <body>
 
@@ -17,8 +18,29 @@
         </a>
       </div>
 
-    <div class="dl-log">欢迎您，<span class="dl-log-user">**.**@alibaba-inc.com</span><a href="###" title="退出系统" class="dl-log-quit">[退出]</a><a href="http://http://www.builive.com/" title="文档库" class="dl-log-quit">文档库</a>
-    </div>
+    <!--<div class="dl-log">-->
+        <!--&lt;!&ndash;欢迎您，<span class="dl-log-user">**.**@alibaba-inc.com</span><a href="###" title="退出系统" class="dl-log-quit">[退出]</a><a href="http://http://www.builive.com/" title="文档库" class="dl-log-quit">文档库</a>&ndash;&gt;-->
+    <!---->
+    <!--</div>-->
+      <div class="dl-log">
+          <span>[登录]</span>
+          <div class="state">欢迎您，
+              <span class="dl-log-user">**.**@alibaba-inc.com</span>
+              <a href="###" title="退出系统" class="dl-log-quit">[退出]</a>
+          </div>
+          <div class="login">
+              <div class="mask"></div>
+              <la class="log">
+                  <h2>登录</h2>
+                  <div><label for="">用户名：</label><input type="text" /></div>
+                  <div><label for="">密码：</label><input type="text" /></div>
+                  <button type="submit">登录</button>
+                  <span>x</span>
+          </div>
+      </div>
+      <a href="http://http://www.builive.com/" title="文档库" class="dl-log-quit">文档库</a>
+  </div>
+
   </div>
    <div class="content">
     <div class="dl-main-nav">
@@ -39,6 +61,22 @@
   <script type="text/javascript" src="__ASS__/js/config.js"></script>
 
   <script>
+      let ele = {
+          span: document.querySelector(".dl-log > span"),
+          x: document.querySelector(".login .log > span"),
+          mask: document.querySelector(".login .mask"),
+          login: document.querySelector(".login")
+      };
+      ele.span.addEventListener("click", function() {
+          ele.login.style.cssText = "display: block;";
+      })
+      ele.x.addEventListener("click", function() {
+          ele.login.style.cssText = "display: none;";
+      })
+      ele.mask.addEventListener("click", function() {
+          ele.login.style.cssText = "display: none;";
+      })
+
     BUI.use('common/main',function(){
       var config = [{
           id:'menu', 
@@ -51,6 +89,7 @@
                 {id:'second-menu',text:'右边菜单',href:'__MAIN__/second-menu.html'},
                 {id:'dyna-menu',text:'动态菜单',href:'__MAIN__/dyna-menu.html'},
                 {id:'nav—set',text:'导航设置',href:'__NAV__/index.html'},
+                {id:'menu-list',text:'导航列表',href:'__MAIN__/menu_list.html'},
               ]
             },{
               text:'页面操作',
@@ -70,29 +109,29 @@
             menu:[{
                 text:'表单页面',
                 items:[
-                  {id:'code',text:'表单代码',href:'form/code.html'},
-                  {id:'example',text:'表单示例',href:'form/example.html'},
-                  {id:'introduce',text:'表单简介',href:'form/introduce.html'},
-                  {id:'valid',text:'表单基本验证',href:'form/basicValid.html'},
-                  {id:'advalid',text:'表单复杂验证',href:'form/advalid.html'},
-                  {id:'remote',text:'远程调用',href:'form/remote.html'},
-                  {id:'group',text:'表单分组',href:'form/group.html'},
-                  {id:'depends',text:'表单联动',href:'form/depends.html'}
+                  {id:'code',text:'表单代码',href:'__ADMIN__/form/code.html'},
+                  {id:'example',text:'表单示例',href:'__ADMIN__/form/example.html'},
+                  {id:'introduce',text:'表单简介',href:'__ADMIN__/form/introduce.html'},
+                  {id:'valid',text:'表单基本验证',href:'__ADMIN__/form/basicValid.html'},
+                  {id:'advalid',text:'表单复杂验证',href:'__ADMIN__/form/advalid.html'},
+                  {id:'remote',text:'远程调用',href:'__ADMIN__/form/remote.html'},
+                  {id:'group',text:'表单分组',href:'__ADMIN__/form/group.html'},
+                  {id:'depends',text:'表单联动',href:'__ADMIN__/form/depends.html'}
                 ]
               },{
                 text:'成功失败页面',
                 items:[
-                  {id:'success',text:'成功页面',href:'form/success.html'},
-                  {id:'fail',text:'失败页面',href:'form/fail.html'}
+                  {id:'success',text:'成功页面',href:'__ADMIN__/form/success.html'},
+                  {id:'fail',text:'失败页面',href:'__ADMIN__/form/fail.html'}
                 
                 ]
               },{
                 text:'可编辑表格',
                 items:[
-                  {id:'grid',text:'可编辑表格',href:'form/grid.html'},
-                  {id:'form-grid',text:'表单中的可编辑表格',href:'form/form-grid.html'},
-                  {id:'dialog-grid',text:'使用弹出框',href:'form/dialog-grid.html'},
-                  {id:'form-dialog-grid',text:'表单中使用弹出框',href:'form/form-dialog-grid.html'}
+                  {id:'grid',text:'可编辑表格',href:'__ADMIN__/form/grid.html'},
+                  {id:'form-grid',text:'表单中的可编辑表格',href:'__ADMIN__/form/form-grid.html'},
+                  {id:'dialog-grid',text:'使用弹出框',href:'__ADMIN__/form/dialog-grid.html'},
+                  {id:'form-dialog-grid',text:'表单中使用弹出框',href:'__ADMIN__/form/form-dialog-grid.html'}
                 ]
               }]
           },{

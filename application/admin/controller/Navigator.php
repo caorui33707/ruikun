@@ -23,6 +23,11 @@ class Navigator extends Controller {
         $ifshow = input('post.ifshow');
         $cid = input('post.cid');
 
+        $saveType = input('get.saveType');
+
+        dump($saveType);exit;
+
+
         if(!$name){
             return false;
         }else if(!$url){

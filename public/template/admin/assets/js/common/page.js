@@ -45,5 +45,14 @@ $(function () {
       component.destroy();
     });
   });
+
+    var buttonText = $('.button-text');
+    buttonText.on('click',function(){
+        //var selections = grid.getSelection();
+        //console.log(selections);
+        alert(2323);
+        // var records = store.getResult();
+        // logEl.text(BUI.JSON.stringify(records));
+    });
   
 });
