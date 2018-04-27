@@ -17,7 +17,6 @@ class Navigator extends Controller {
     }
 
     public function add(){
-
         $name   = input('post.name');
         $url    = input('post.url');
         $ifshow = input('post.ifshow');
@@ -25,39 +24,71 @@ class Navigator extends Controller {
 
         $saveType = input('get.saveType');
 
-        dump($saveType);exit;
-
 
         if(!$name){
-            return false;
+            return json(
+                array(
+                    'status'=>1,
+                    'info'=>'请输入菜单名！'
+                ));
         }else if(!$url){
-            return false;
+            return json(
+                array(
+                    'status'=>1,
+                    'info'=>'请输入地址！'
+                ));
         }else{
             $data = [
                 'name'   =>$name,
                 'url'    =>$url,
                 'ifshow' =>$ifshow,
                 'cid'     =>$cid,
+                'addtime'=>time(),
             ];
-            if($this->navDb->nav($data)){
-                $this->redirect('/template/admin/main/menu.html');
+            if($id=$this->navDb->nav($data)){
+                return json(
+                    array(
+                        'status'=>0,
+                        'id'=>$id,
+                    ));
             }else{
-                return false;
+                return  json(
+                    array(
+                        'status'=>1,
+                        'info'=>'异常！',
+                    ));
             }
 
         }
     }
 
     public function edit(){
+
+        $id = input('post.id');
         $name   = input('post.name');
         $url    = input('post.url');
         $ifshow = input('post.ifshow');
-        $cid = input('post.cid');
+        $cid = input('post.cid',0);
 
-        if(!$name){
-            return false;
+
+        if(!$id){
+            return json(
+                array(
+                    'status'=>1,
+                    'info'=>'非法操作！'
+                ));
+        }else if(!$name){
+            return json(
+                array(
+                    'status'=>1,
+                    'info'=>'请输入菜单名！'
+                ));
         }else if(!$url){
-            return false;
+            return json(
+                array(
+                    'status'=>1,
+                    'info'=>'请输入地址！'
+                ));
         }else{
             $data = [
                 'name'   =>$name,
@@ -65,12 +96,48 @@ class Navigator extends Controller {
                 'ifshow' =>$ifshow,
                 'cid'     =>$cid,
             ];
-            if($this->navDb->nav($data)){
-                $this->redirect('/template/admin/main/menu.html');
+            if($this->navDb->edit($data,$id)){
+                return json(
+                    array(
+                        'status'=>0,
+                    ));
             }else{
-                return false;
+                return  json(
+                    array(
+                    'status'=>1,
+                    'info'=>'异常！',
+                ));
             }
 
+        }
+    }
+
+    public function del()
+    {
+        $id = input('post.id/a',0);
+
+        if (!$id) {
+            return json(
+                array(
+                    'status' => 1,
+                    'info' => '非法操作！'
+                ));
+
+        }
+        $data = [
+            'deleted'=>1,
+        ];
+        if($this->navDb->edit($data,$id)){
+            return json(
+                array(
+                    'status'=>0,
+                ));
+        }else{
+            return  json(
+                array(
+                    'status'=>1,
+                    'info'=>'异常！',
+                ));
         }
     }
 

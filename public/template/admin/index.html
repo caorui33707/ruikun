@@ -47,9 +47,8 @@
       <div class="dl-inform"><div class="dl-inform-title">贴心小秘书<s class="dl-inform-icon dl-up"></s></div></div>
       <ul id="J_Nav"  class="nav-list ks-clear">
         <li class="nav-item dl-selected"><div class="nav-item-inner nav-home">首页</div></li>
-        <li class="nav-item"><div class="nav-item-inner nav-order">表单页</div></li>
-        <li class="nav-item"><div class="nav-item-inner nav-inventory">搜索页</div></li>
         <li class="nav-item"><div class="nav-item-inner nav-supplier">详情页</div></li>
+        <li class="nav-item"><div class="nav-item-inner nav-order">表单页</div></li>
       </ul>
     </div>
     <ul id="J_NavContent" class="dl-tab-conten">
@@ -80,22 +79,21 @@
     BUI.use('common/main',function(){
       var config = [{
           id:'menu', 
-          homePage : 'main-menu',
+          homePage : 'menu-list',
           menu:[{
               text:'首页内容',
               items:[
-                // {id:'code',text:'首页代码',href:'__MAIN__/code.html',closeable : false},
-                {id:'main-menu',text:'导航设置',href:'__MAIN__/menu.html'},
-                {id:'second-menu',text:'右边菜单',href:'__MAIN__/second-menu.html'},
-                {id:'dyna-menu',text:'动态菜单',href:'__MAIN__/dyna-menu.html'},
-                {id:'nav—set',text:'导航设置',href:'__NAV__/index.html'},
+                // {id:'code',text:'首页代码',href:'__MAIN__/code.html',closeable : false}
+
                 {id:'menu-list',text:'导航列表',href:'__MAIN__/menu_list.html'},
+                {id:'second-menu',text:'文章添加',href:'__MAIN__/second-menu.html'},
+                // {id:'dyna-menu',text:'动态菜单',href:'__MAIN__/dyna-menu.html'},
               ]
             },{
-              text:'页面操作',
+              text:'权限',
               items:[
-                {id:'operation',text:'页面常见操作',href:'__MAIN__/operation.html'},
-                {id:'quick',text:'页面操作快捷方式',href:'__MAIN__/quick.html'}
+                {id:'operation',text:'添加用户',href:'__MAIN__/admin_add.html'},
+                {id:'quick',text:'用户列表',href:'__MAIN__/admin_index.html'}
               ]
             },{
               text:'文件结构',
@@ -105,10 +103,20 @@
               ]
             }]
           },{
-            id:'form',
+            id:'detail',
             menu:[{
-                text:'表单页面',
+                text:'详情页面',
                 items:[
+                  {id:'code',text:'详情页面代码',href:'__ADMIN__/detail/code.html'},
+                  {id:'example',text:'详情页面示例',href:'__ADMIN__/detail/example.html'},
+                  {id:'introduce',text:'详情页面简介',href:'__ADMIN__/detail/introduce.html'}
+                ]
+              }]
+          },{
+          id:'form',
+          menu:[{
+              text:'表单页面',
+              items:[
                   {id:'code',text:'表单代码',href:'__ADMIN__/form/code.html'},
                   {id:'example',text:'表单示例',href:'__ADMIN__/form/example.html'},
                   {id:'introduce',text:'表单简介',href:'__ADMIN__/form/introduce.html'},
@@ -117,51 +125,25 @@
                   {id:'remote',text:'远程调用',href:'__ADMIN__/form/remote.html'},
                   {id:'group',text:'表单分组',href:'__ADMIN__/form/group.html'},
                   {id:'depends',text:'表单联动',href:'__ADMIN__/form/depends.html'}
-                ]
-              },{
-                text:'成功失败页面',
-                items:[
+              ]
+          },{
+              text:'成功失败页面',
+              items:[
                   {id:'success',text:'成功页面',href:'__ADMIN__/form/success.html'},
                   {id:'fail',text:'失败页面',href:'__ADMIN__/form/fail.html'}
-                
-                ]
-              },{
-                text:'可编辑表格',
-                items:[
+
+              ]
+          },{
+              text:'可编辑表格',
+              items:[
                   {id:'grid',text:'可编辑表格',href:'__ADMIN__/form/grid.html'},
                   {id:'form-grid',text:'表单中的可编辑表格',href:'__ADMIN__/form/form-grid.html'},
                   {id:'dialog-grid',text:'使用弹出框',href:'__ADMIN__/form/dialog-grid.html'},
                   {id:'form-dialog-grid',text:'表单中使用弹出框',href:'__ADMIN__/form/form-dialog-grid.html'}
-                ]
-              }]
-          },{
-            id:'search',
-            menu:[{
-                text:'搜索页面',
-                items:[
-                  {id:'code',text:'搜索页面代码',href:'search/code.html'},
-                  {id:'example',text:'搜索页面示例',href:'search/example.html'},
-                  {id:'example-dialog',text:'搜索页面编辑示例',href:'search/example-dialog.html'},
-                  {id:'introduce',text:'搜索页面简介',href:'search/introduce.html'}, 
-                  {id:'config',text:'搜索配置',href:'search/config.html'}
-                ]
-              },{
-                text : '更多示例',
-                items : [
-                  {id : 'tab',text : '使用tab过滤',href : 'search/tab.html'}
-                ]
-              }]
-          },{
-            id:'detail',
-            menu:[{
-                text:'详情页面',
-                items:[
-                  {id:'code',text:'详情页面代码',href:'detail/code.html'},
-                  {id:'example',text:'详情页面示例',href:'detail/example.html'},
-                  {id:'introduce',text:'详情页面简介',href:'detail/introduce.html'}
-                ]
-              }]
-          }];
+              ]
+          }]
+      }
+          ];
       new PageUtil.MainPage({
         modulesConfig : config
       });

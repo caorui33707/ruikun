@@ -62,4 +62,17 @@ CREATE TABLE `username` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 
+CREATE TABLE `admin` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user` varchar(30) DEFAULT '' COMMENT '用户名',
+  `passwd` char(32) DEFAULT '' COMMENT '密码',
+  `register_time` int(11) DEFAULT '0' COMMENT '注册时间',
+  `deleted` tinyint(3) DEFAULT '0' COMMENT '1 删除',
+  `login_time` int(11) DEFAULT '0' COMMENT '登录时间',
+  PRIMARY KEY (`id`),
+  KEY `register_time` (`register_time`),
+  KEY `login_time` (`login_time`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT '管理后台';
+
+
 

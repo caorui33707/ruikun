@@ -48,7 +48,7 @@ class Article extends Controller{
     }
 
     public function artList(){
-
+        return $this->articleDb-> artList();
     }
 
 }

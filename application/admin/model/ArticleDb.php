@@ -9,4 +9,9 @@ class ArticleDb extends Db{
         return  $this->db->insert($data);
     }
 
+    public function artList(){
+        $this->db = Db::table('article');
+        return  $this->db->select();
+    }
+
 }

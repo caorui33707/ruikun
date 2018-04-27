@@ -46,8 +46,21 @@
  </head>
  <body>
 
-    <form action="/admin/article/add" method="post" >
+
+
+
+ <form action="/admin/article/add" method="post" >
         <div class="container">
+
+            <div class="detail-section">
+                <h3>文章列表</h3>
+                <div class="row detail-row">
+                    <div class="span24">
+                        <div id="grid"></div>
+                    </div>
+                </div>
+            </div>
+
           <div class="nav">
               <span>一级菜单：</span>
               <select name="first_level_menu" id="first_level_menu" onchange="changeSelect(this.selectedIndex)">
@@ -78,6 +91,19 @@
     </form>
 
     <script src="http://g.tbcdn.cn/fi/bui/jquery-1.8.1.min.js"></script>
+     <script type="text/javascript" src="../assets/js/bui-min.js"></script>
+
+     <script type="text/javascript" src="../assets/js/config-min.js"></script>
+     <script type="text/javascript">
+         BUI.use('common/page');
+     </script>
+     <!-- 仅仅为了显示代码使用，不要在项目中引入使用-->
+     <script type="text/javascript" src="../assets/js/prettify.js"></script>
+     <script type="text/javascript">
+         $(function () {
+             prettyPrint();
+         });
+     </script>
 
   <script>
 
@@ -96,6 +122,20 @@
           return result;
       }
 
+      function artList() {
+          var result;
+          $.ajax({
+              type:'get',
+              url:'/admin/artList',
+              dataType:'json',
+              async:false,
+              success:function(data){
+                  result = data;
+              }
+          });
+          return result;
+      }
+
 
 
       var coordinatesFirst = menuObj();
@@ -103,17 +143,6 @@
       // console.log(coordinatesFirst);
 
       var enumObjArr = new Array();
-
-      // if(coordinatesFirst || coordinatesFirst.length) {//初始化页面，把所有坐标列一个列表
-      //     $.each(coordinatesFirst, function(index,term) {
-      //         index++;
-      //         if(term.id) {
-      //             enumObjArr[index] = [term.id,term.name];
-      //          //  enumObjArr[index][term.id] = term.name;
-      //           //  enumObjArr[term.id] = term.id;
-      //         }
-      //     })
-      // }
 
       for (var i=0;i<coordinatesFirst.length;i++) {
           enumObjArr[i] = [coordinatesFirst[i]['id'],coordinatesFirst[i]['name']];
@@ -193,7 +222,48 @@
          }
 
          $("#two_level_menu").html(options);
-     }            
+     }
+
+
+      BUI.use('bui/grid',function (Grid) {
+          var data = artList();//[{id:'1112',name:'李四',day:1349622209547,address:'上海市浦东新区杨高北路938号'},{id:'1112',name:'李四',day:1349622209547,address:'上海市浦东新区杨高北路938号'},{id:'1112',name:'李四',day:1349622209547,address:'上海市浦东新区杨高北路938号'},{id:'1112',name:'李四',day:1349622209547,address:'上海市浦东新区杨高北路938号'}],
+
+          console.log(data);
+              grid = new Grid.SimpleGrid({
+                  render : '#grid', //显示Grid到此处
+                  width : 950,      //设置宽度
+                  columns : [
+                      {title:'标题',dataIndex:'title',width:80},
+                      {title:'上级菜单',dataIndex:'cat_id',width:100},
+                      {title:'添加时间',dataIndex:'add_time',width:100,renderer:Grid.Format.datetimeRenderer,renderer : function(k,v){
+                              return formatDateTime(v.add_time);
+                          }
+                      },
+                      // {title:'学生家庭住址',dataIndex:'address',width:300}
+                  ]
+              });
+          grid.render();
+          grid.showData(data);
+      });
+
+      function formatDateTime(timeStamp) {
+          var date = new Date();
+          date.setTime(timeStamp * 1000);
+          var y = date.getFullYear();
+          var m = date.getMonth() + 1;
+          m = m < 10 ? ('0' + m) : m;
+          var d = date.getDate();
+          d = d < 10 ? ('0' + d) : d;
+          var h = date.getHours();
+          h = h < 10 ? ('0' + h) : h;
+          var minute = date.getMinutes();
+          var second = date.getSeconds();
+          minute = minute < 10 ? ('0' + minute) : minute;
+          second = second < 10 ? ('0' + second) : second;
+          return y + '-' + m + '-' + d ;//+' '+h+':'+minute+':'+second;
+      };
+
+
   </script>  
 
 <body>

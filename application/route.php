@@ -40,8 +40,11 @@ Route::rule([
 Route::rule([
     'admin'=>'admin/index/index',
     'admin/nav'=>'admin/navigator/add',
+    'admin/nav/edit'=>'admin/navigator/edit',
+    'admin/nav/del'=>'admin/navigator/del',
     'admin/navList'=>'admin/index/navList',
     'admin/navMenu'=>'admin/index/navMenu',
+    'admin/artList'=>'admin/article/artList',
 ]);
 
 Route::rule([

@@ -7,13 +7,13 @@ class NavDb extends Db{
     public function nav($data){
         $this->db = Db::table('nav');
 
-        return  $this->db->insert($data);
+        return  $this->db->insertGetId($data);
     }
 
     public function edit($data,$id){
         $this->db = Db::table('nav');
 
-        return  $this->db->where('id',$id)->update($data);
+        return  $this->db->whereIn('id',$id)->update($data);
     }
 
 }
