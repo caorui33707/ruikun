@@ -50,5 +50,17 @@ Route::rule([
 Route::rule([
     'admin/navListLevel'=>'admin/index/navListLevel',
     'admin/article/add'=>'admin/article/add',
+    'admin/list'=>'admin/member/index',
 ]);
+
+
+Route::post([
+    'admin/reg'=>'admin/member/reg',
+    'admin/login'=>'admin/member/login',
+]);
+
+Route::get([
+    'admin/out'=>'admin/member/out',
+]);
+
 

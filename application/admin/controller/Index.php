@@ -3,7 +3,7 @@ namespace app\admin\controller;
 
 use think\Controller;
 
-class Index extends Controller {
+class Index extends Admin {
 
     private $indexDb;
     private $articleDb;
@@ -13,8 +13,9 @@ class Index extends Controller {
         $this->articleDb = new \app\admin\model\ArticleDb();
     }
 
-    public function index(){
 
+
+    public function index(){
             return view('admin/index');
     }
 

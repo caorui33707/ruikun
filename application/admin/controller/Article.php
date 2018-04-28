@@ -3,7 +3,7 @@ namespace app\admin\controller;
 
 use think\Controller;
 
-class Article extends Controller{
+class Article extends Admin{
     private $indexDb;
     private $navDb;
 
@@ -18,13 +18,24 @@ class Article extends Controller{
         $content = input('post.content','');
 
         if(!$catId){
-            $menu = $this->IndexDb->selectLevel();
+            //$menu = $this->IndexDb->selectLevel();
+
+            return json(
+                array(
+                    'status'=>1,
+                    'info'=>'请选择二级菜单！'
+                ));
             $this->assign('menu',$menu);
             $this->assign('info','请选择二级菜单！');
             return  view('admin/main/second-menu');
             //$this->redirect('/template/admin/main/second-menu.html',array('info'=>'请选择二级菜单！'));
             return false;
         }else if(!$title){
+            return json(
+                array(
+                    'status'=>1,
+                    'info'=>'标题不能为空！'
+                ));
             $menu = $this->IndexDb->selectLevel();
             $this->assign('menu',$menu);
             $this->assign('info','标题不能为空！');
@@ -39,9 +50,18 @@ class Article extends Controller{
                 'add_time'     =>time(),
             ];
             if($this->articleDb->add($data)){
+                return json(
+                    array(
+                        'status'=>0,
+                       // 'info'=>'标题不能为空！'
+                    ));
                 $this->redirect('/template/admin/main/second-menu.html');
             }else{
-                return false;
+                return json(
+                    array(
+                        'status'=>1,
+                        'info'=>'添加失败！'
+                    ));
             }
 
         }

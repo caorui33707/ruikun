@@ -1,10 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <title>列百分比表格</title>
+    <!-- 此文件为了显示Demo样式，项目中不需要引入 -->
+    <link href="../assets/code/demo.css" rel="stylesheet">
+
+    <link href="http://g.alicdn.com/bui/bui/1.1.21/css/bs3/dpl.css" rel="stylesheet">
+    <link href="http://g.alicdn.com/bui/bui/1.1.21/css/bs3/bui.css" rel="stylesheet">
+
 </head>
 <body>
+<div class="demo-content">
+    <div class="row">
+        <div class="span16">
+            <div id="grid">
 
+            </div>
+        </div>
+    </div>
+
+    <<script src="http://g.tbcdn.cn/kissy/k/1.4.2/seed.js"></script>
+    <script src="http://g.alicdn.com/bui/bui/1.1.21/adapter.js"></script>
+    <!-- script start -->
+    <script type="text/javascript">
+
+        KISSY.use(['bui/grid','bui/data'],function(S,Grid,Data){
+
+            var Store = Data.Store,
+                columns = [
+                    {title : '用户名',dataIndex :'user', width:200},
+                    // {id: '123',title : '表头2',dataIndex :'b', width:100},
+                    // {title : '表头3',dataIndex : 'c',width:200}
+                ],
+                data = {$dataArr} ; // [{a:'123'},{a:'cdd',b:'edd'},{a:'1333',c:'eee',d:2}];
+
+            var store = new Store({
+                    data : data
+                }),
+                grid = new Grid.Grid({
+                    render:'#grid',
+                    width:'100%',//如果表格使用百分比，这个属性一定要设置
+                    columns : columns,
+                    idField : 'a',
+                    store : store
+                });
+
+            grid.render();
+        });
+    </script>
+    <!-- script end -->
+</div>
 </body>
 </html>

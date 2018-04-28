@@ -23,22 +23,22 @@
     <!---->
     <!--</div>-->
       <div class="dl-log">
-          <span>[登录]</span>
-          <div class="state">欢迎您，
-              <span class="dl-log-user">**.**@alibaba-inc.com</span>
-              <a href="###" title="退出系统" class="dl-log-quit">[退出]</a>
-          </div>
-          <div class="login">
-              <div class="mask"></div>
-              <la class="log">
-                  <h2>登录</h2>
-                  <div><label for="">用户名：</label><input type="text" /></div>
-                  <div><label for="">密码：</label><input type="text" /></div>
-                  <button type="submit">登录</button>
-                  <span>x</span>
-          </div>
+          <!--<span>[登录]</span>-->
+          <if condition="$user_admin eq true">
+              欢迎您，<span class="dl-log-user">{$user_admin.user}</span><a href="###" title="退出系统" class="dl-log-quit" onclick="return out()">[退出]</a>
+            <else />
+              <div class="login" style="display: block">
+                  <div class="mask"></div>
+                  <la class="log">
+                      <h2>登录</h2>
+                      <div><label for="">用户名：</label><input type="text" name="user" /></div>
+                      <div><label for="">密码：</label><input type="text" name="passwd" /></div>
+                      <button type="submit" onclick="returnSubmit()">登录</button>
+                      <!--<span>x</span>-->
+              </div>
+          </if>
       </div>
-      <a href="http://http://www.builive.com/" title="文档库" class="dl-log-quit">文档库</a>
+      <!--<a href="http://http://www.builive.com/" title="文档库" class="dl-log-quit">文档库</a>-->
   </div>
 
   </div>
@@ -60,21 +60,21 @@
   <script type="text/javascript" src="__ASS__/js/config.js"></script>
 
   <script>
-      let ele = {
-          span: document.querySelector(".dl-log > span"),
-          x: document.querySelector(".login .log > span"),
-          mask: document.querySelector(".login .mask"),
-          login: document.querySelector(".login")
-      };
-      ele.span.addEventListener("click", function() {
-          ele.login.style.cssText = "display: block;";
-      })
-      ele.x.addEventListener("click", function() {
-          ele.login.style.cssText = "display: none;";
-      })
-      ele.mask.addEventListener("click", function() {
-          ele.login.style.cssText = "display: none;";
-      })
+      // let ele = {
+      //     span: document.querySelector(".dl-log > span"),
+      //     x: document.querySelector(".login .log > span"),
+      //     mask: document.querySelector(".login .mask"),
+      //     login: document.querySelector(".login")
+      // };
+      // ele.span.addEventListener("click", function() {
+      //     ele.login.style.cssText = "display: block;";
+      // })
+      // ele.x.addEventListener("click", function() {
+      //     ele.login.style.cssText = "display: none;";
+      // })
+      // ele.mask.addEventListener("click", function() {
+      //     ele.login.style.cssText = "display: none;";
+      // })
 
     BUI.use('common/main',function(){
       var config = [{
@@ -93,7 +93,7 @@
               text:'权限',
               items:[
                 {id:'operation',text:'添加用户',href:'__MAIN__/admin_add.html'},
-                {id:'quick',text:'用户列表',href:'__MAIN__/admin_index.html'}
+                {id:'quick',text:'用户列表',href:'/admin/list'}
               ]
             },{
               text:'文件结构',
@@ -148,6 +148,59 @@
         modulesConfig : config
       });
     });
+
+      function returnSubmit(){
+
+          $.ajax({
+              type:'POST',
+              url:'/admin/login',
+              data:{user:$("input[name='user']").val(),passwd:$("input[name='passwd']").val()},
+              dataType:'json',
+              async:false,
+              success:function(data){
+
+                  if(data.status){
+                      show(data.info);
+                  }else{
+                      show(data.info);
+                      setTimeout('myrefresh()',3000); //指定1秒刷新一次
+                  }
+                  // result = data;
+              }
+          });
+          //alert(22);
+          //coordinates;
+          return false;
+      }
+
+      function myrefresh()
+      {
+          window.location.reload();
+      }
+
+      function show (meg) {
+          BUI.Message.Alert(meg,function(){
+              //alert('确认');
+          },'info');
+      }
+
+      function out() { //admin/out
+          $.ajax({
+              type:'get',
+              url:'/admin/out',
+              dataType:'json',
+              async:false,
+              success:function(data){
+
+                  setTimeout('myrefresh()',1000); //指定1秒刷新一次
+                  //data
+                  // result = data;
+              }
+          });
+
+          return false;
+      }
+
   </script>
  </body>
 </html>

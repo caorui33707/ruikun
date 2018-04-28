@@ -48,8 +48,6 @@
 
 
 
-
- <form action="/admin/article/add" method="post" >
         <div class="container">
 
             <div class="detail-section">
@@ -85,10 +83,9 @@
               </div>
           </div>
           <div class="btn">
-              <button type="submit">提交</button>
+              <button type="submit" onclick="return returnSubmit()">提交</button>
           </div>
         </div>
-    </form>
 
     <script src="http://g.tbcdn.cn/fi/bui/jquery-1.8.1.min.js"></script>
      <script type="text/javascript" src="../assets/js/bui-min.js"></script>
@@ -262,7 +259,35 @@
           second = second < 10 ? ('0' + second) : second;
           return y + '-' + m + '-' + d ;//+' '+h+':'+minute+':'+second;
       };
+      
+      function returnSubmit() {
+          $.ajax({
+              type:'post',
+              url:'/admin/article/add',
+              dataType:'json',
+              data:{cat_id:$("select[name='cat_id']").val(),title:$("input[name='title']").val(),content:$("input[name='content']").val()},
+              async:false,
+              success:function(data){
+                  if(data.status){
+                      show (data.info);
+                  }else{
+                      setTimeout('myrefresh()',2000); //指定1秒刷新一次
+                  }
+              }
+          });
 
+          return false;
+      }
+
+      function show (meg) {
+          BUI.Message.Alert(meg,function(){
+              //alert('确认');
+          },'info');
+      }
+
+      function myrefresh() {
+          window.location.reload();
+      }
 
   </script>  
 

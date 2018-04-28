@@ -4,7 +4,7 @@ namespace app\admin\controller;
 use think\Controller;
 use think\Request;
 
-class Navigator extends Controller {
+class Navigator extends Admin {
 
     private $navDb;
 
