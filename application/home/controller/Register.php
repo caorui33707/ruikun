@@ -96,4 +96,36 @@ class Register extends Controller{
         }
 
     }
+
+    public function existMobile(){
+
+        $mobile =  input('post.mobile','');
+        if(!$mobile){
+            return json(
+                array(
+                    'status'=>1,
+                    'info'=>'手机号不能为空！'
+                ));
+        }else if($this->registerDb->mobileExist($mobile)){
+            return json(
+                array(
+                    'status'=>1,
+                    'info'=>'手机号已注册！'
+                )
+            );
+        }else if(!preg_match("/^1[3|5|6|7|8|9]\d{9}$/",$mobile)){
+            return json(
+                array(
+                    'status'=>1,
+                    'info'=>'手机号格式错误！'
+                ));
+        }else{
+            return json(
+                array(
+                    'status'=>0
+                )
+            );
+        }
+    }
+
 }

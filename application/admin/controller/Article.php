@@ -16,6 +16,14 @@ class Article extends Admin{
         $catId   = input('post.cat_id',0);
         $title = input('post.title','');
         $content = input('post.content','');
+        $img = input('post.img/a','');
+
+        $title2 = input('post.title2','');
+        $content2 = input('post.content2','');
+        $cat_name = input('post.cat_name','');
+
+       $img = json_encode($img);
+
 
         if(!$catId){
             //$menu = $this->IndexDb->selectLevel();
@@ -48,6 +56,10 @@ class Article extends Admin{
                 'title'    =>$title,
                 'content' =>$content,
                 'add_time'     =>time(),
+                'img' =>$img,
+                'title2'    =>$title2,
+                'content2' =>$content2,
+                'cat_name'=>$cat_name,
             ];
             if($this->articleDb->add($data)){
                 return json(

@@ -7,6 +7,10 @@
     <link href="/template/admin/assets/css/bui-min.css" rel="stylesheet" type="text/css" />
     <link href="/template/admin/assets/css/page-min.css" rel="stylesheet" type="text/css" />   <!-- 下面的样式，仅是为了显示代码，而不应该在项目中使用-->
    <link href="/template/admin/assets/css/prettify.css" rel="stylesheet" type="text/css" />
+
+     <!--<link href="http://g.alicdn.com/bui/bui/1.1.21/css/bs3/dpl.css" rel="stylesheet">-->
+     <link href="http://g.alicdn.com/bui/bui/1.1.21/css/bs3/bui.css" rel="stylesheet">
+
    <style type="text/css">
       input{
         min-width: 200px;
@@ -42,6 +46,22 @@
           color: #fff;
           margin-left: 30%;
       }
+      .hide {
+          display: none;
+          vertical-align: top;
+          /* width: 200px;
+          height: 200px; */
+      }
+
+      .show {
+          vertical-align: top;
+           width: 200px;
+          height: 200px;
+      }
+
+       .bui-queue-item-error{
+           display: none;
+       }
    </style>
  </head>
  <body>
@@ -74,14 +94,42 @@
           </div>
           <div class="text">
               <div class="title">
-                  <span>标题：</span>
+                  <span>标  题 * ：</span>
                   <input type="text" name="title" />
               </div>
               <div class="content">
-                  <span>内容：</span>
+                  <span>内   容     ：</span>
                   <input type="text" name="content"/>
               </div>
-          </div>
+
+              <div class="title">
+                  <span>二級标题：</span>
+                  <input type="text" name="title2" />
+              </div>
+              <div class="content">
+                  <span>二級内容：</span>
+                  <input type="text" name="content2"/>
+              </div>
+
+              <div class="demo-content">
+
+                  <div class="row">
+                      <div class="span8">
+                          <span>图片：</span>
+                          <div id="J_Uploader">
+                          </div>
+                      </div>
+                  </div>
+
+                  <!--<div class="img_file"  id="J_Uploader">-->
+                      <!--<input type="file" id="picture" class="btn btn-danger">-->
+                  <!--</div>-->
+
+                  <div class="low_source">
+                      <span>预览图：</span><img src="" alt="" class="hide">
+                  </div>
+              </div>
+
           <div class="btn">
               <button type="submit" onclick="return returnSubmit()">提交</button>
           </div>
@@ -212,7 +260,7 @@
 
          //循环将数组中的数据写入<option>标记中
          for (var j = 0; j<arr_city.length;j++) {
-             options += '<option value="'+ arr_city[j]['id'] + '">'+ arr_city[j]['name'] + '</option>';
+             options += '<option value="'+ arr_city[j]['id'] + '" data-value = "'+ arr_city[j]['name'] + '" >'+ arr_city[j]['name'] + '</option>';
              //two_level_menu.options[j].text = arr_city[j]['name'];
          // two_level_menu.options[j].text = arr_city[index][j];
           // two_level_menu.options[j].value = arr_city[index][j];
@@ -231,7 +279,7 @@
                   width : 950,      //设置宽度
                   columns : [
                       {title:'标题',dataIndex:'title',width:80},
-                      {title:'上级菜单',dataIndex:'cat_id',width:100},
+                      {title:'上级菜单',dataIndex:'cat_name',width:100},
                       {title:'内容',dataIndex:'content',width:100},
                       {title:'添加时间',dataIndex:'add_time',width:100,renderer:Grid.Format.datetimeRenderer,renderer : function(k,v){
                               return formatDateTime(v.add_time);
@@ -260,13 +308,31 @@
           second = second < 10 ? ('0' + second) : second;
           return y + '-' + m + '-' + d ;//+' '+h+':'+minute+':'+second;
       };
+
+      function Total() {
+          var numArr = []; // 定义一个空数组
+          var txt = $("input[name='img']"); // 获取所有文本框
+          for (var i = 0; i < txt.length; i++) {
+              numArr.push(txt.eq(i).val()); // 将文本框的值添加到数组中
+          }
+          return numArr;
+      }
       
       function returnSubmit() {
+          // arr[0]='param';
+          // arr[1]='param2';
+
+          var cat_name = $("select[name='cat_id']").find("option:selected").text();
+
           $.ajax({
               type:'post',
               url:'/admin/article/add',
               dataType:'json',
-              data:{cat_id:$("select[name='cat_id']").val(),title:$("input[name='title']").val(),content:$("input[name='content']").val()},
+              data:{
+                  cat_id:$("select[name='cat_id']").val(),cat_name:cat_name,title:$("input[name='title']").val(),content:$("input[name='content']").val(),
+                  title2:$("input[name='title2']").val(),content2:$("input[name='content2']").val(),
+                  img:Total()
+              },
               async:false,
               success:function(data){
                   if(data.status){
@@ -290,7 +356,49 @@
           window.location.reload();
       }
 
-  </script>  
+  </script>
+
+    <script src="http://g.alicdn.com/bui/seajs/2.3.0/sea.js"></script>
+    <script src="http://g.alicdn.com/bui/bui/1.1.21/config.js"></script>
+
+    <script type="text/javascript">
+
+
+        function p(s) {
+            return s < 10 ? '0' + s: s;
+        }
+
+        BUI.use('bui/uploader',function (Uploader) {
+
+            /**
+             * 返回数据的格式
+             *
+             *  默认是 {url : 'url'},否则认为上传失败
+             *  可以通过isSuccess 更改判定成功失败的结构
+             */
+            var uploader = new Uploader.Uploader({
+                render: '#J_Uploader',
+                url: '/admin/upload',
+                //根据业务需求来判断上传是否成功
+                isSuccess: function(result){
+                    if(result && result.status){
+                        BUI.Message.Alert("上传失败");
+                       // BUI.Message.Alert("上传成功,文件已保存到目录：" + result.url);
+                    }else{
+                        var myDate = new Date;
+                        var year = myDate.getFullYear();//获取当前年
+                        var yue = myDate.getMonth()+1;//获取当前月
+                        var date = myDate.getDate();//获取当前日
+                        ymd = year + ''+ p(yue) + '' + p(date);
+
+                        $(".low_source").append('<img src="'+ '/uploads/'+ ymd + '/' + result.img  +'" alt=""  class="show">');
+                        $(".low_source").append('<input name="img"  type="hidden" value="' + result.img + '"  class="hide">');
+                    }
+                },
+            }).render();
+
+        });
+    </script>
 
 <body>
 </html>  

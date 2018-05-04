@@ -13,6 +13,7 @@ Route::rule([
 
 Route::post([
     'register/add'=>'register/add',
+    'register/exist_mobile'=>'register/existMobile'
 ]);
 
 Route::post([
@@ -57,6 +58,7 @@ Route::rule([
 Route::post([
     'admin/reg'=>'admin/member/reg',
     'admin/login'=>'admin/member/login',
+    'admin/upload'=>'admin/upload/upload',
 ]);
 
 Route::get([
