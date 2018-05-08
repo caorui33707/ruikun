@@ -11,6 +11,12 @@
      <!--<link href="http://g.alicdn.com/bui/bui/1.1.21/css/bs3/dpl.css" rel="stylesheet">-->
      <link href="http://g.alicdn.com/bui/bui/1.1.21/css/bs3/bui.css" rel="stylesheet">
 
+     <script type="text/javascript" charset="utf-8" src="/template/admin/assets/js/ueditor.config.js"></script>
+     <script type="text/javascript" charset="utf-8" src="/template/admin/assets/js/ueditor.all.min.js"> </script>
+     <!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
+     <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
+     <script type="text/javascript" charset="utf-8" src="/template/admin/assets/js/lang/zh-cn/zh-cn.js"></script>
+
    <style type="text/css">
       input{
         min-width: 200px;
@@ -44,7 +50,7 @@
           height: 30px;
           background: #00AD19;
           color: #fff;
-          margin-left: 30%;
+          margin: 20px 0 0 50%;
       }
       .hide {
           display: none;
@@ -62,6 +68,44 @@
        .bui-queue-item-error{
            display: none;
        }
+
+      .edit {
+          position: absolute;
+          top: 0;
+          left: 0;
+          bottom: 0;
+          right: 0;
+          width: 100%;
+          height: 100%;
+          display: none;
+      }
+      .edit .mask {
+          position: absolute;
+          top: 0;
+          left: 0;
+          bottom: 0;
+          right: 0;
+          background: #000;
+          opacity: 0.7;
+          z-index: 999;
+      }
+      .edit .text {
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%,-50%);
+          overflow: hidden;
+          background: #fff;
+          z-index: 1000;
+      }
+      .edit .text textarea {
+          display: block;
+          width: 606px;
+          height: 430px;
+          line-height: 30px;
+          text-indent: 2em;
+          font-size: 16px;
+      }
    </style>
  </head>
  <body>
@@ -102,16 +146,10 @@
                   <input type="text" name="content"/>
               </div>
 
-              <div class="title">
-                  <span>二級标题：</span>
-                  <input type="text" name="title2" />
-              </div>
-              <div class="content">
-                  <span>二級内容：</span>
-                  <input type="text" name="content2"/>
-              </div>
 
-              <div class="demo-content">
+            <script id="container" name="content" type="text/plain">
+            </script>
+            <div class="demo-content" style="margin-top:10px">
 
                   <div class="row">
                       <div class="span8">
@@ -121,10 +159,6 @@
                       </div>
                   </div>
 
-                  <!--<div class="img_file"  id="J_Uploader">-->
-                      <!--<input type="file" id="picture" class="btn btn-danger">-->
-                  <!--</div>-->
-
                   <div class="low_source">
                       <span>预览图：</span><img src="" alt="" class="hide">
                   </div>
@@ -133,7 +167,45 @@
           <div class="btn">
               <button type="submit" onclick="return returnSubmit()">提交</button>
           </div>
-        </div>
+
+          <div class="edit">
+              <div class="mask"></div>
+              <div class="text">
+                  <textarea name="" id="" cols="100" rows="50"></textarea>
+                  <div class="btn">
+                      <button type="submit">确认</button>
+                  </div>
+              </div>
+          </div>
+
+    <!-- 配置文件 -->
+    <script type="text/javascript" src="/template/admin/assets/js/ueditor.config.js"></script>
+    <!-- 编辑器源码文件 -->
+    <script type="text/javascript" src="/template/admin/assets/js/ueditor.all.js"></script>
+    <!-- 实例化编辑器 -->
+    <script type="text/javascript">
+        var ue = UE.getEditor('container',{
+            initialFrameWidth : 800,
+            initialFrameHeight: 400
+        });
+
+        // ue.ready(function() {
+        //
+        //     UE.getEditor('myEditor1',{
+        //         initialFrameWidth : 600,
+        //         initialFrameHeight: 600
+        //     });
+        //                ue.setHeight(200);
+        //              //设置编辑器的内容
+        //               // ue.setContent('hello');
+        //               //获取html内容，返回: <p>hello</p>
+        //               // var html = ue.getContent();
+        //               // //获取纯文本内容，返回: hello
+        //              // var txt = ue.getContentTxt();
+        //        });
+
+    </script>
+
 
     <script src="http://g.tbcdn.cn/fi/bui/jquery-1.8.1.min.js"></script>
      <script type="text/javascript" src="../assets/js/bui-min.js"></script>
@@ -278,19 +350,32 @@
                   render : '#grid', //显示Grid到此处
                   width : 950,      //设置宽度
                   columns : [
-                      {title:'标题',dataIndex:'title',width:80},
-                      {title:'上级菜单',dataIndex:'cat_name',width:100},
-                      {title:'内容',dataIndex:'content',width:100},
+                      {title:'标题',dataIndex:'title',width:80,renderer : function(k,v){
+                              return '<p  class="grid-command btn-edit" data-name="title" data-value="' +  v.article_id + '">' + v.title  + '</p>';
+                          }
+                      },
+                      {title:'上级菜单',dataIndex:'cat_name',width:100,validator : valid},
+                      {title:'内容',dataIndex:'content',width:100,renderer : function(k,v){
+                              return '<p  class="grid-command btn-edit" data-name="content" data-value="' +  v.article_id + '">' + v.content  + '</p>';
+                          }
+                      },
                       {title:'添加时间',dataIndex:'add_time',width:100,renderer:Grid.Format.datetimeRenderer,renderer : function(k,v){
                               return formatDateTime(v.add_time);
                           }
                       },
+                      // {title : '操作',width:30,renderer : function(k,v){
+                      //     return '<p  class="grid-command btn-edit" data-value="' +  v.article_id + '">编辑</p>';
+                      // }}
                       // {title:'学生家庭住址',dataIndex:'address',width:300}
                   ]
               });
           grid.render();
           grid.showData(data);
       });
+
+     function valid() {
+         alert(11);
+     }
 
       function formatDateTime(timeStamp) {
           var date = new Date();
@@ -392,13 +477,63 @@
                         ymd = year + ''+ p(yue) + '' + p(date);
 
                         $(".low_source").append('<img src="'+ '/uploads/'+ ymd + '/' + result.img  +'" alt=""  class="show">');
-                        $(".low_source").append('<input name="img"  type="hidden" value="' + result.img + '"  class="hide">');
+                        $(".low_source").append('<input name="img"  type="hidden" value="' +  ymd + '/' + result.img + '"  class="hide">');
                     }
                 },
             }).render();
 
         });
+
+        $(".detail-row p").click(function(e) {
+            $(".edit").show();
+             obj = $(this);
+
+            var text = obj.text();
+            console.log(text);
+            $(".text textarea").val(text);
+        });
+
+        $(".mask").click(function() {
+            $(".edit").hide();
+        });
+
+        $(".text .btn button").click(function() {
+
+            var text = $(".text textarea").val();
+            var id = obj.attr('data-value');
+
+            var name = obj.attr('data-name');
+
+
+            $.ajax({
+                type:'post',
+                url:'/admin/article/edit',
+                dataType:'json',
+                data:{
+                    id:obj.attr('data-value'),name:name,val:text,
+                },
+                async:false,
+                success:function(data){
+                    if(data.status){
+                        show (data.info);
+                    }
+                }
+            });
+
+            obj.text(text);
+            $(".edit").hide();
+        });
+
+
+        function show (meg) {
+            BUI.Message.Alert(meg,function(){
+                //alert('确认');
+            },'info');
+        }
+
+
     </script>
 
 <body>
+
 </html>  

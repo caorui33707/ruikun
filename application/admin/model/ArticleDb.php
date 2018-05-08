@@ -9,6 +9,11 @@ class ArticleDb extends Db{
         return  $this->db->insert($data);
     }
 
+    public function edit($id,$data){
+        $this->db = Db::table('article');
+        return  $this->db->where('article_id='.$id)->update($data);
+    }
+
     public function artList(){
         $this->db = Db::table('article');
         return  $this->db->select();

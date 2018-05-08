@@ -79,6 +79,39 @@ class Article extends Admin{
         }
     }
 
+    public function edit(){
+        $id   = input('post.id',0);
+        $dataArr = input();
+
+        $key = $dataArr['name'];
+        $val = $dataArr['val'];
+
+        if(!$id){
+            return json(
+                array(
+                    'status'=>1,
+                    'info'=>'操作不存在！'
+                )
+            );
+        }else {
+            $data = array($key=>$val);
+            if($this->articleDb->edit($id,$data)){
+                return json(
+                    array(
+                        'status'=>0,
+                        // 'info'=>'标题不能为空！'
+                    ));
+            }else{
+                return json(
+                    array(
+                        'status'=>1,
+                        'info'=>'修改失败！'
+                    )
+                );
+            }
+        }
+    }
+
     public function artList(){
         return $this->articleDb-> artList();
     }

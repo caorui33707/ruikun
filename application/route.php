@@ -51,6 +51,7 @@ Route::rule([
 Route::rule([
     'admin/navListLevel'=>'admin/index/navListLevel',
     'admin/article/add'=>'admin/article/add',
+    'admin/article/edit'=>'admin/article/edit',
     'admin/list'=>'admin/member/index',
 ]);
 
