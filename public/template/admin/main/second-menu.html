@@ -146,9 +146,14 @@
                   <input type="text" name="content"/>
               </div>
 
+              <div class="content">
+                  <span>文章描述：</span>
+              </div>
 
-            <script id="container" name="content" type="text/plain">
-            </script>
+                <script id="container" name="content" type="text/plain">
+                </script>
+
+
             <div class="demo-content" style="margin-top:10px">
 
                   <div class="row">
@@ -262,7 +267,8 @@
       var enumObjArr = new Array();
 
       for (var i=0;i<coordinatesFirst.length;i++) {
-          enumObjArr[i] = [coordinatesFirst[i]['id'],coordinatesFirst[i]['name']];
+          j = i+1;
+          enumObjArr[j] = [coordinatesFirst[i]['id'],coordinatesFirst[i]['name']];
       }
 
 
@@ -291,6 +297,9 @@
  
          //循环将数组中的数据写入<option>标记中
          for(var i=0;i<arr_province.length;i++){
+
+             console.log(arr_province);
+
             first_level_menu.options[i].text = arr_province[i][1];
             first_level_menu.options[i].value = arr_province[i][0];
          }
@@ -354,7 +363,7 @@
                               return '<p  class="grid-command btn-edit" data-name="title" data-value="' +  v.article_id + '">' + v.title  + '</p>';
                           }
                       },
-                      {title:'上级菜单',dataIndex:'cat_name',width:100,validator : valid},
+                      {title:'上级菜单',dataIndex:'cat_name',width:100},
                       {title:'内容',dataIndex:'content',width:100,renderer : function(k,v){
                               return '<p  class="grid-command btn-edit" data-name="content" data-value="' +  v.article_id + '">' + v.content  + '</p>';
                           }
@@ -373,9 +382,6 @@
           grid.showData(data);
       });
 
-     function valid() {
-         alert(11);
-     }
 
       function formatDateTime(timeStamp) {
           var date = new Date();
@@ -409,13 +415,14 @@
 
           var cat_name = $("select[name='cat_id']").find("option:selected").text();
 
+
           $.ajax({
               type:'post',
               url:'/admin/article/add',
               dataType:'json',
               data:{
                   cat_id:$("select[name='cat_id']").val(),cat_name:cat_name,title:$("input[name='title']").val(),content:$("input[name='content']").val(),
-                  title2:$("input[name='title2']").val(),content2:$("input[name='content2']").val(),
+                  title2:$("input[name='title2']").val(),content2:$("input[name='content2']").val(),description:ue.getContent(),
                   img:Total()
               },
               async:false,

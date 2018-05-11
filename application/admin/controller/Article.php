@@ -21,6 +21,7 @@ class Article extends Admin{
         $title2 = input('post.title2','');
         $content2 = input('post.content2','');
         $cat_name = input('post.cat_name','');
+        $description = input('post.description','');
 
        $img = json_encode($img);
 
@@ -60,6 +61,7 @@ class Article extends Admin{
                 'title2'    =>$title2,
                 'content2' =>$content2,
                 'cat_name'=>$cat_name,
+                'description'=>$description,
             ];
             if($this->articleDb->add($data)){
                 return json(
