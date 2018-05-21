@@ -1,0 +1,101 @@
+{extend name="shop/blue/base" /}
+{block name="resources"}
+<!-- 添加css、字体文件文件 -->
+<style type="text/css">
+.bought-table .order-bd .no-border-right {border-right: #E6E6E6 solid 1px;}
+.member-main .tabmenu .tab li.active a{color:#FFF;}
+</style>
+{/block}
+{block name="main"}
+<div class="margin-w1210">
+	{include file='shop/blue/Member/controlLeftMenu'/}
+	<div class="member-main">
+		<div class="box">
+			<div class="tabmenu">
+				<ul class="tab pngFix">
+					<li class="first active">代理商列表</li>
+				</ul>
+			</div>
+			<div class="alert alert-success">
+				<h4>{:lang('member_operation_prompt')}：</h4>
+				<ul>
+					<li>请认真填写</li>
+				</ul>
+			</div>
+
+			{if condition="$total_count eq ''"}
+				<div class="tabmenu">
+						<input type="button" value="新增代理商" onclick="location.href='{:__URL('SHOP_MAIN/member/agentinsert')}'" class="main-btn common-btn" />
+
+				</div>
+			{/if}
+			{if condition="$total_count neq ''"}
+			<div>
+				<table width="100%" border="0" cellspacing="0" cellpadding="0" class="bought-table">
+					<thead>
+						<tr class="col-name">
+							<th width="10%" style="border-left: 1px solid #E6E6E6;">代理商名称</th>
+							<th width="20%">身份证</th>
+							<th width="20%">身份证照片</th>
+							<th width="15%">联系人姓名</th>
+							<th width="15%">地址</th>
+							<th width="10%">状态</th>
+
+							<th width="15%" style="border-right: 1px solid #E6E6E6;">{:lang('goods_operation')}</th>
+						</tr>
+					</thead>
+					<tbody class="close-order" id="list_address">
+						<tr class="order-bd last">
+							<td align="center" class="baobei no-border-right order_goods_info"><div class="last">{$list.agent_name}</div></td>
+							<td align="center" class="baobei no-border-right order_goods_info"><div class="last">{$list.identity_card}</div></td>
+							<td align="center" class="baobei no-border-right order_goods_info"><div class="last"><img width="120px" height="200px" src="{$list.identity_card_photo}" /></div></td>
+							<td align="center" class="baobei no-border-right order_goods_info"><div class="last">{$list.linkman_name}</div></td>
+							<td align="center" class="baobei no-border-right order_goods_info"><div class="last">{$list.agent_info}</div></td>
+							<td align="center" class="baobei no-border-right order_goods_info">
+								<div class="last">
+									{$list.status_val}
+								</div>
+							</td>
+							<td align="center" class="baobei no-border-right order_goods_info">
+								<div class="last">
+									{if condition="$list.is_status eq 1"}
+									 <a href="{:__URL('SHOP_MAIN/member/agentUpdate','id='.$list['id'])}" class="main-btn main-btn-large">{:lang('member_modify')}</a>
+									<a href="javascript:void(0);" onclick="agent_delete({$list.id})" class="main-btn main-btn-large">{:lang('goods_delete')}</a>
+									{/if}
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			{else/}
+			<div>
+				<div class="emptyFrame"><i class="user_address"></i><span>{:lang('member_empty_address_yet')}</span></div>
+			</div>
+			{/if}
+			<div class="blank10"></div>
+			{include file='shop/blue/controlCommonPage'/}
+		</div>
+	</div>
+</div>
+{/block}
+{block name="RightSideBar"}{/block}
+{block name="javascript"}
+<script type="text/javascript">
+function agent_delete(id){
+	$.ajax({
+		url: "{:__URL('SHOP_MAIN/member/memberAgentDelete')}",
+		data: { "id": id },
+		type: "post",
+		success: function (res) {
+			if (res["code"] == 1) {
+				$.msg("{:lang('member_delete_successfully')}!");
+				window.location.href=window.location.href;
+			} else {
+				$.msg(res["outmessage"]);
+			}
+		}
+	})
+}
+</script>
+{/block}

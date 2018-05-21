@@ -1,0 +1,218 @@
+{extend name="platform/base" /} {block name="main"}
+<div class="row padder-v">
+	<div class="col-sm-9">
+
+	</div>
+	<div class="col-sm-2">
+		<input type="text" class="input-sm form-control" id="search_text"
+			placeholder="请输入导航名称">
+	</div>
+	<div class="col-sm-1">
+		<button class="btn btn-sm btn-default" onclick="LoadingInfo(1)">搜索</button>
+	</div>
+</div>
+<section class="panel panel-default">
+	<div class="table-responsive">
+		<table class="table table-striped b-t b-light text-sm">
+			<thead>
+				<tr>
+					<th width="20"><input type="checkbox"></th>
+					<th>代理商名称</th>
+					<th>身份证</th>
+					<th class="center">身份证照片</th>
+					<th class="center">联系人姓名</th>
+					<th class="center">联系人电话</th>
+					<th class="center">联系人地址</th>
+					<th class="center">状态</th>
+					<th class="center">审核</th>
+					<th class="center">操作</th>
+				</tr>
+			</thead>
+			<tbody id="list">
+				<tr></tr>
+			</tbody>
+		</table>
+	</div>
+	{include file="platform/page" /}
+</section>
+
+{/block} {block name="script"}
+<script type="text/javascript">
+$(function(){
+	LoadingInfo(1);
+});
+//分页数据
+ function LoadingInfo(pageIndex) {
+	var search_text = $("#search_text").val();
+	$.ajax({
+		type : "post",
+		url : "{:__URL('PLATFORM_MAIN/config/shopAgantAdminList')}",
+		async : true,
+		data : {
+			"pageIndex" : pageIndex, "search_text" : search_text
+		},
+		success : function(data) {
+			var html = '';
+			 $("#total_count_num").text(data["total_count"]);
+			$("#page_count_num").text(data["page_count"]);
+			$("#page_count").val(data["page_count"]);
+			$("#pageNumber a").remove();
+
+			//console.log(data);
+
+			var status_array=['未知','审核中','审核失败','审核成功'];
+
+			if (data['data'].length > 0) {
+
+			    $("#add_agent").hide();
+
+				for (var i = 0; i < data['data'].length; i++) {
+
+				    var is_status =  data['data'][i]["is_status"];
+
+				    var status_html = status_array[is_status];
+
+				    var status_style = '';
+				    if(is_status == 1){
+                        var status_style = 'color:#ffc333';
+					}else if(is_status == 3){
+                        var status_style = 'color:green';
+					}else{
+                        var status_style = 'color:red';
+					}
+
+                    var edit_status = '';
+				    if(is_status ==1 ){
+                       var edit_status = ' <a style="cursor: pointer;color:green;" onclick="statusAgent('+data['data'][i]['id']+',3)">同意审核</a>'+
+                        ' <a style="cursor: pointer;" onclick="statusAgent('+data['data'][i]['id']+',2)">拒绝审核</a>';
+					}
+
+					html += '<tr>';
+					html += '<td><input type="checkbox" name="sub" value="'+ data['data'][i]['id']+'"></td>';
+					html += '<td>'+ data['data'][i]['agent_name']+'</td>';
+					// if(data[i]["nav_type"] == 0){
+					// 	html += '<td class="tal" style="word-break:break-word;">' + data[i]["agent_name"]+ '</td>';
+					// }else if(data[i]["nav_type"] == 1){
+					// 	html += '<td class="tal" style="word-break:break-word;">' + data[i]["agent_name"]+ '</td>';
+					// }
+
+                    html += '<td class="tal" style="word-break:break-word;">' + data['data'][i]["identity_card"]+ '</td>';
+
+                    html += '<td class="center" style="word-break:break-word;"> <img src="' + data['data'][i]["identity_card_photo"]+ '"/> </td>';
+
+                    html += '<td class="center" style="word-break:break-word;"> ' + data['data'][i]["linkman_name"]+ ' </td>';
+                    html += '<td class="center" style="word-break:break-word;"> ' + data['data'][i]["linkman_tel"]+ ' </td>';
+                    html += '<td class="center" style="word-break:break-word;"> ' + data['data'][i]["linkman_address"]+ ' </td>';
+
+                    html += '<td class="center" style="word-break:break-word; ' + status_style +'"> ' + status_html + ' </td>';
+
+                    html += '<td class="center">' +
+
+                        edit_status +
+
+                        '</td> ';
+
+			        html += '<td class="center"><a href="'+__URL('PLATFORM_MAIN/Config/updateShopAgant?id='+ data['data'][i]['id'])+'">查看</a>' +
+                        // ' <a style="cursor: pointer;" onclick="deleteArticle('+data['data'][i]['id']+')">删除</a>'+
+						// ' <a style="cursor: pointer;" onclick="deleteArticle('+data['data'][i]['id']+')">删除</a>' +
+						'</td> ';
+				    html += '</tr>';
+				}
+			} else {
+				html += '<tr align="center"><th colspan="7">暂无内容</th></tr>';
+			}
+			$("#list").html(html);
+			var totalpage = $("#page_count").val();
+
+			if (totalpage == 1) {
+				changeClass("all");
+			}
+			var $html = pagenumShow(jumpNumber,totalpage,{$pageshow})
+			$("#pageNumber").append($html);
+			load();
+		}
+	});
+}
+
+//修改状态
+function statusAgent(id,is_status) {
+    $.ajax({
+        type : "post",
+        url : "{:__URL('PLATFORM_MAIN/config/updateShopAgant')}",
+        data : {
+
+            'is_status' : is_status,
+
+            'id':id,
+            //'is_show' : is_show
+        },
+        async : true,
+        success : function(data) {
+            if (data["code"] > 0) {
+                showMessage('success', "操作成功","{:__URL('PLATFORM_MAIN/config/shopAgantList')}");
+            }else{
+                showMessage('error', "操作失败");
+            }
+        }
+    });
+}
+ 
+//删除菜单
+function deleteArticle(nav_id){
+	$( "#dialog" ).dialog({				
+        buttons: {
+            "确定": function() {
+                $(this).dialog('close');
+                $.ajax({
+    				type : "post",
+    				url : "{:__URL('PLATFORM_MAIN/config/delshopnavigation')}",
+    				async : true,
+    				data : {
+    					"nav_id" : nav_id
+    				},
+    				success : function(data) {
+    					//alert(JSON.stringify(data));
+    					if (data["code"] > 0) {
+    						showMessage('success', data["message"]);
+    						LoadingInfo(1);
+    					}else{
+    						showMessage('error', data["message"]);
+    					}
+    				}
+    				})
+            },
+            "取消,#e57373": function() {
+                $(this).dialog('close');
+            }
+        },
+        contentText:"是否删除菜单？",
+    });
+}
+/*修改排序*/
+function load(){
+	$('.num').change(function(){
+		var nav_id = $(this).attr('nav_id');
+		var sort = $(this).val();
+		//alert(sort);
+		$.ajax({
+			type:"post",
+			url:"{:__URL('PLATFORM_MAIN/config/modifyshopnavigationsort')}",
+			data:{'nav_id':nav_id,'sort':sort},
+			async:true,
+			success: function (data) {
+				if(data['code'] > 0){
+					/* showMessage('success', data["message"]); */
+				}else{
+					showMessage('error', data["message"]);
+				}
+			}
+		}); 
+	});
+}
+$("#search_text").keypress(function(e){
+	if(e.keyCode == 13){
+		LoadingInfo(1);
+	}
+});
+</script>
+{/block}

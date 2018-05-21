@@ -1,0 +1,345 @@
+{extend name="platform/base" /}
+{block name="resources"/}
+<style>
+	.error{
+		display:none;
+		color:red;
+	}
+	.col-md-4 input{
+		border:none;
+	}
+	textarea{
+		border:none;
+	}
+</style>
+{/block}
+{block name="main"}
+<section class="panel panel-default">
+	<header class="panel-heading font-bold"> 修改代理商 > {if condition="$data['agent_type'] eq 1"} 个人 {else/} 公司 {/if}</header>
+	<div class="panel-body">
+		<form class="form-horizontal">
+
+			<div class="form-group">
+				<label class="col-sm-2 control-label"><span style="color:red;margin-right:10px;">*</span>代理商名称</label>
+				<div class="col-md-4">
+					{$data.agent_name}
+				</div>
+				<p class="error" style="display:none;color:red;">请输入名称</p>
+			</div>
+
+			<div class="line line-dashed line-lg pull-in"></div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">联系人姓名</label>
+				<div class="col-md-4">
+					{$data.linkman_name}
+				</div>
+			</div>
+
+			<div class="line line-dashed line-lg pull-in"></div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">联系人电话</label>
+				<div class="col-md-4">
+					{$data.linkman_tel}
+				</div>
+			</div>
+
+			<div class="line line-dashed line-lg pull-in"></div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">地址</label>
+				<div class="col-md-4">
+					<p>
+						<select name="province" id="seleAreaNext" onchange="GetProvince();" value="{$data['province_id']}" class="select-common">
+							<option value="">请选择省</option>
+						</select>
+						<select name="city" id="seleAreaThird" onchange="getSelCity();" value="{$data['city_id']}"  class="select-common">
+							<option value="">请选择市</option>
+						</select>
+						<select name="district" id="seleAreaFouth" value="{$data['district_id']}"  class="select-common">
+							<option value="-1">请选择区/县</option>
+						</select>
+					</p>
+					<p class="error"></p>
+				</div>
+			</div>
+
+			<div class="line line-dashed line-lg pull-in"></div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">联系人地址</label>
+				<div class="col-md-4">
+					{$data.linkman_address}
+				</div>
+			</div>
+
+			<div class="line line-dashed line-lg pull-in"></div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">身份证</label>
+				<div class="col-md-4">
+					{$data.identity_card}
+				</div>
+			</div>
+
+			<div class="line line-dashed line-lg pull-in"></div>
+            <div class="form-group">
+				<label class="col-sm-2 control-label">身份证证件图</label>
+				<div class="col-md-4">
+					<p><img id="imgLogo" src="{$data.identity_card_photo}" class="imglogo"/></p>
+                                            	<a href="javascript:void(0);" style="display:block;position:relative;z-index:1;">
+
+
+				</div>
+			</div>
+
+            <div class="line line-dashed line-lg pull-in"></div>             
+            <div class="form-group">
+				<label class="col-sm-2 control-label">描述</label>
+				<div class="col-md-4">
+					{$data.desc}
+				</div>
+			</div>
+
+            <div class="line line-dashed line-lg pull-in"></div>
+
+			<div id="company_stye" {if condition="$data['agent_type'] eq 1"} style="display: none" {/if} >
+
+			<div class="form-group">
+				<label class="col-sm-2 control-label">公司名</label>
+				<div class="col-md-4">
+					{$data.company_name}
+				</div>
+			</div>
+
+			<div class="line line-dashed line-lg pull-in"></div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">营业执照号</label>
+				<div class="col-md-4">
+					{$data.business_licence_number}
+				</div>
+			</div>
+
+			<div class="line line-dashed line-lg pull-in"></div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">营业执照</label>
+				<div class="col-md-4">
+					<p><img id="business_license" src="{$data.business_license}" class="imglogo"/></p>
+					<a href="javascript:void(0);" style="display:block;position:relative;z-index:1;">
+
+
+					</a>
+				</div>
+			</div>
+
+			<div class="line line-dashed line-lg pull-in"></div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">组织机构代码</label>
+				<div class="col-md-4">
+					{$data.organization_code}
+				</div>
+			</div>
+
+	</div>
+
+	<div class="line line-dashed line-lg pull-in"></div>
+	<div class="form-group">
+		<label class="col-sm-2 control-label">代理金额</label>
+		<div class="col-md-4">
+			<input name="agent_money" value="{$data.agent_money}" id="agent_money"/>
+		</div>
+	</div>
+		{if condition="$data.is_status neq 3"}
+			<div class="line line-dashed line-lg pull-in"></div>
+			<div class="form-group">
+				<div class="col-sm-4 col-sm-offset-2">
+					<input type="hidden" id="up_id" value="{$data.id}" />
+					<a href="javascript:void(0);" onclick="editAgantAjax()" class="btn btn-primary">保存</a>
+				</div>
+			</div>
+		{/if}
+		</form>
+	</div>
+</section>
+<input type="hidden" id="provinceid" value="{$data['province_id']}">
+<input type="hidden" id="cityid" value="{$data['city_id']}">
+<input type="hidden" id="districtid" value="{$data['district_id']}">
+<!--<input type="hidden" id="pickip_id" value="{$pickip_id}"/>-->
+<script>	
+	/**
+	*添加代理商
+	*/
+	function editAgantAjax() {
+
+		var province_id = $("#seleAreaNext").val();
+        var city_id = $("#seleAreaThird").val();
+        var district_id = $("#seleAreaFouth").val();
+
+		var agent_money = $("#agent_money").val();
+
+		var is_blank = $("input[name='navigationtype']:checked").val();
+		//var is_show = $("input[name='showtype']:checked").val();
+//  		verify(ad_image, link_url);
+		var id = $("#up_id").val(); // 更新的id
+
+		$.ajax({
+			type : "post",
+			url : "{:__URL('PLATFORM_MAIN/config/updateShopAgant')}",
+			data : {
+
+				'province_id' : province_id,
+                'city_id' : city_id,
+                'district_id' : district_id,
+
+
+				'id':id,
+
+				'agent_money':agent_money,
+				//'is_show' : is_show
+			},
+			async : true,
+			success : function(data) {
+				if (data["code"] > 0) {
+					showMessage('success', "操作成功","{:__URL('PLATFORM_MAIN/config/shopAgantList')}");
+				}else{
+					showMessage('error', "操作失败");
+				}
+			}
+		});
+	}
+
+	function imgUpload(event) {
+		var fileid = $(event).attr("id");
+		var data = { 'file_path' : UPLOADCOMMON };
+		uploadFile(fileid,data,function(res){
+			if(res.code){
+				$("#imgLogo").attr("src","__UPLOAD__/"+res.data);
+				$("#Logo").val(res.data);
+				showTip(res.message,"success");
+			}else{
+				showTip(res.message,"error");
+			}
+		});
+	}
+
+
+    $(function() {
+
+        var selCity = $("#seleAreaNext")[0]; console.log(selCity);
+        for (var i = selCity.length - 1; i >= 0; i--) {
+            selCity.options[i] = null;
+        }
+        var opt = new Option("请选择省", "-1");
+        selCity.options.add(opt);
+        // 添加省
+        $.ajax({
+            type : "post",
+            url : "{:__URL('ADMIN_MAIN/shop/getprovince')}",
+            dataType : "json",
+            success : function(data) {
+                if (data != null && data.length > 0) {
+                    for (var i = 0; i < data.length; i++) {
+                        var opt = new Option(data[i].province_name,data[i].province_id);
+                        selCity.options.add(opt);
+                    }
+                    if(typeof($("#provinceid").val())!='undefined'){
+                        $("#seleAreaNext").val($("#provinceid").val());
+                        GetProvince();
+                        $("#provinceid").val('-1');
+                    }
+                }
+            }
+        });
+    });
+
+
+    //选择省份弹出市区
+    function GetProvince() {
+        var id = $("#seleAreaNext").find("option:selected").val();
+        var selCity = $("#seleAreaThird")[0];
+        for (var i = selCity.length - 1; i >= 0; i--) {
+            selCity.options[i] = null;
+        }
+        var opt = new Option("请选择市", "-1");
+        selCity.options.add(opt);
+        $.ajax({
+            type : "post",
+            url : "{:__URL('ADMIN_MAIN/shop/getcity')}",
+            dataType : "json",
+            data : { "province_id" : id },
+            success : function(data) {
+                if (data != null && data.length > 0) {
+                    for (var i = 0; i < data.length; i++) {
+                        var opt = new Option(data[i].city_name,data[i].city_id);
+                        selCity.options.add(opt);
+                    }
+                    if(typeof($("#cityid").val())!='undefined'){
+                        $("#seleAreaThird").val($("#cityid").val());
+                        getSelCity();
+                        $("#cityid").val('-1');
+                    }
+                }
+            }
+        });
+    };
+    // 选择市区弹出区域
+    function getSelCity() {
+        var id = $("#seleAreaThird").find("option:selected").val();
+        var selArea = $("#seleAreaFouth")[0];
+        for (var i = selArea.length - 1; i >= 0; i--) {
+            selArea.options[i] = null;
+        }
+        var opt = new Option("请选择区/县", "-1");
+        selArea.options.add(opt);
+        $.ajax({
+            type : "post",
+            url : "{:__URL('ADMIN_MAIN/shop/getdistrict')}",
+            dataType : "json",
+            data : {
+                "city_id" : id
+            },
+            success : function(data) {
+                if (data != null && data.length > 0) {
+                    for (var i = 0; i < data.length; i++) {
+                        var opt = new Option(data[i].district_name,data[i].district_id);
+                        selArea.options.add(opt);
+                    }
+
+                    if(typeof($("#districtid").val())!='undefined'){
+                        $("#seleAreaFouth").val($("#districtid").val());
+                        $("#districtid").val('-1');
+                    }
+                }
+            }
+        });
+    }
+
+
+    //选择省份弹出市区
+    function GetProvince() {
+        var id = $("#seleAreaNext").find("option:selected").val();
+        var selCity = $("#seleAreaThird")[0];
+        for (var i = selCity.length - 1; i >= 0; i--) {
+            selCity.options[i] = null;
+        }
+        var opt = new Option("请选择市", "-1");
+        selCity.options.add(opt);
+        $.ajax({
+            type : "post",
+            url : "{:__URL('ADMIN_MAIN/shop/getcity')}",
+            dataType : "json",
+            data : { "province_id" : id },
+            success : function(data) {
+                if (data != null && data.length > 0) {
+                    for (var i = 0; i < data.length; i++) {
+                        var opt = new Option(data[i].city_name,data[i].city_id);
+                        selCity.options.add(opt);
+                    }
+                    if(typeof($("#cityid").val())!='undefined'){
+                        $("#seleAreaThird").val($("#cityid").val());
+                        getSelCity();
+                        $("#cityid").val('-1');
+                    }
+                }
+            }
+        });
+    };
+
+</script>
+{/block}

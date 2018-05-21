@@ -1,0 +1,121 @@
+{extend name="platform/base" /}
+{block name="main"}
+<section class="panel panel-default">
+     <header class="panel-heading text-right bg-light">
+       <ul class="nav nav-tabs pull-left">
+         <li class="active"><a href="#mobile" data-toggle="tab">设置</a></li>
+       </ul>
+       <span class="hidden-sm">推荐人手机号设置</span>
+     </header>
+                  <div class="panel-body">
+                    <div class="tab-content">
+                   
+                      <div class="tab-pane fade active in" id="mobile">
+							<div class="panel-body">
+								<form class="form-horizontal" method="get">
+
+
+									<div class="form-group">
+										<label class="col-sm-2 control-label">是否启用</label>
+										<div class="col-md-4">
+											<label class="switch" style="float:left;margin-right:10px;">
+												<input type="checkbox" id="recommend_mobile" {if condition="$recommend_mobile.is_use=='1'"}checked="checked" value="1" {else/} value="0"  {/if} >
+												<span></span>
+											</label>
+											<p style="margin: 5px 0;color:#666;" class="showmessage" id="showmessage">推荐人手机号设置</p>
+										</div>
+									</div>
+
+									<!--<div class="line line-dashed line-lg pull-in"></div>-->
+									<!--<div class="form-group">-->
+										<!--<div class="col-sm-4 col-sm-offset-2">-->
+											<!--<a href="javascript:void(0);" onclick="setMobileMessage()" class="btn btn-primary">保存</a>-->
+										<!--</div>-->
+									<!--</div>-->
+								</form>
+							</div>
+                      </div>
+                   
+                    </div>
+                  </div>
+                </section>
+
+
+<script>
+
+
+	$('#recommend_mobile').change(function(){
+
+	   // var recommend_mobile = $('#').val();
+
+        if($("#recommend_mobile").prop('checked')){
+            var is_use = 1;
+        }else{
+            var is_use = 0;
+        }
+
+        $.ajax({
+            type: "GET",
+            url: "{:__URL('PLATFORM_MAIN/config/recommendMobile')}",
+            data: {"is_use":is_use},
+            success: function(data){
+                if(data.code){
+                   // $('#showmessage').css("border","1px solid red");
+                    $("#showmessage").css("color","red").text("操作失敗");
+                    $("#showmessage").attr("value","true");
+                }
+            }
+        });
+
+    });
+//设置短信通知
+	function setMobileMessage(){
+		if($("#mobile_is_use").prop('checked')){
+			var is_use = 1;
+		}else{
+			var is_use = 0;
+		}
+		var app_key = $("#APP_KEY").val();
+		var secret_key = $("#SECRET_KEY").val();
+		var free_sign_name = $("#FREE_SIGN_NAME").val();
+		var user_type = $("input[name='user_type']:checked").val();//用户类型
+		$.ajax({
+			type:"post",
+			url:"{:__URL('PLATFORM_MAIN/config/recommendmobile')}",
+			data:{
+				'is_use':is_use,
+				'app_key':app_key,
+				'secret_key':secret_key,
+				'free_sign_name':free_sign_name,
+				'user_type' : user_type
+			},
+			async:true,
+			success:function (data) {
+				if (data["code"] > 0) {
+					showMessage('success', data["message"],"{:__URL('PLATFORM_MAIN/config/notifyindex')}");
+				}else{
+					showMessage('error', data["message"]);
+				}	
+			}
+		});
+	}
+	function testSend(){
+		var email_test = $("#email_test").val();
+		$.ajax({
+			type:"post",
+			url:"{:__URL('PLATFORM_MAIN/config/testsend')}",
+			data:{
+				'email_test':email_test,
+			},
+			async:true,
+			success:function (data) {
+				if (data["code"] > 0) {
+					showMessage('success', data["message"]);
+				}else{
+					showMessage('error', data["message"]);
+				}	
+			}
+		});
+	}
+</script>
+{/block}
